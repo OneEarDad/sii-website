@@ -824,60 +824,111 @@ body:not(.intro-done) .hero__scroll-indicator {
    TRUST BAR
    ============================================= */
 .home-trust {
-    background: var(--teal);
-    padding: clamp(4rem, 8vw, 6rem) 0;
+    background: linear-gradient(150deg, #1a1817 0%, var(--charcoal) 55%, var(--deep-teal) 125%);
+    padding: clamp(4.5rem, 9vw, 6.5rem) 0;
     position: relative;
     overflow: hidden;
     z-index: 4;
 }
 
+/* Fine grain overlay so the dark band has texture, not flat digital black */
 .home-trust::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 140px;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
     pointer-events: none;
 }
 
-.home-trust__grid {
+.home-trust__rail {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
+    gap: var(--space-xl) var(--space-lg);
     text-align: center;
     position: relative;
 }
 
 @media (min-width: 768px) {
-    .home-trust__grid {
+    .home-trust__rail {
         grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+    }
+}
+
+/* Connecting rail line — threads the four nodes on desktop, drawn on scroll */
+.home-trust__line { display: none; }
+
+@media (min-width: 768px) {
+    .home-trust__line {
+        display: block;
+        position: absolute;
+        top: calc(var(--space-md) + 6px);
+        left: 12.5%;
+        right: 12.5%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--teal) 12%, var(--teal) 88%, transparent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1.1s var(--easing-wqf) 0.15s;
     }
 
-    .home-trust__item:not(:last-child) {
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    .home-trust__rail:has(.home-trust__item.in-view) .home-trust__line {
+        transform: scaleX(1);
     }
 }
 
 .home-trust__item {
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-sm) 0;
+    position: relative;
 }
 
+.home-trust__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: 0 auto var(--space-md);
+    background: var(--teal);
+    box-shadow: 0 0 0 6px rgba(106, 161, 161, 0.15);
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.home-trust__item.in-view .home-trust__dot {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.home-trust__item.stagger-1 .home-trust__dot { transition-delay: 0.10s; }
+.home-trust__item.stagger-2 .home-trust__dot { transition-delay: 0.25s; }
+.home-trust__item.stagger-3 .home-trust__dot { transition-delay: 0.40s; }
+.home-trust__item.stagger-4 .home-trust__dot { transition-delay: 0.55s; }
+
 .home-trust__number {
-    font-size: clamp(2.8rem, 6vw, 4rem);
+    font-size: clamp(2.6rem, 6vw, 3.8rem);
     font-weight: 800;
     color: var(--white);
     line-height: 1;
     margin-bottom: var(--space-sm);
     letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
 }
 
 .home-trust__item p {
-    color: rgba(198, 195, 194, 0.8);
+    color: #a9bcbc;
     font-size: 0.8rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 0;
     line-height: 1.4;
+    max-width: 20ch;
+    margin-inline: auto;
 }
 
 /* =============================================
