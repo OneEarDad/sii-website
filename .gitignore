@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Dev screenshots / audit artifacts
+.screenshots/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.tmp
+
+# Logs
+npm-debug.log*
+*.log

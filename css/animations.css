@@ -1,0 +1,289 @@
+/* ============================================
+   SII Medical — Animations
+   ============================================ */
+
+/* --- Scroll-Triggered Animations --- */
+.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(.62, .16, .13, 1.01),
+                transform 0.7s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.animate--left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s cubic-bezier(.62, .16, .13, 1.01),
+                transform 0.7s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.animate--right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s cubic-bezier(.62, .16, .13, 1.01),
+                transform 0.7s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.animate--scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s cubic-bezier(.62, .16, .13, 1.01),
+                transform 0.7s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.animate.in-view,
+.animate--left.in-view,
+.animate--right.in-view,
+.animate--scale.in-view {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Stagger delays for groups */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* --- Keyframe Animations --- */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Pulse (subtle) */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* Float (subtle hover) */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* Gradient shift for hero backgrounds */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Counter number roll */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Underline grow */
+@keyframes underlineGrow {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* --- Utility Animation Classes --- */
+.anim-fade-in {
+    animation: fadeIn var(--transition-slow) ease forwards;
+}
+
+.anim-fade-in-up {
+    animation: fadeInUp var(--transition-slow) ease forwards;
+}
+
+.anim-slide-right {
+    animation: slideInRight var(--transition-slow) ease forwards;
+}
+
+.anim-slide-left {
+    animation: slideInLeft var(--transition-slow) ease forwards;
+}
+
+.anim-scale-in {
+    animation: scaleIn var(--transition-slow) ease forwards;
+}
+
+/* --- Link Underline Animation --- */
+.link-animated {
+    position: relative;
+    display: inline-block;
+}
+
+.link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width var(--transition-fast);
+}
+
+.link-animated:hover::after {
+    width: 100%;
+}
+
+/* --- Button Press Effect --- */
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* --- Modal Animations --- */
+.modal-overlay {
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+}
+
+.modal-content {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition: all var(--transition-medium);
+}
+
+.modal-overlay.active .modal-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- Loading Skeleton --- */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--off-white) 25%,
+        var(--light-silver) 50%,
+        var(--off-white) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease infinite;
+    border-radius: var(--border-radius);
+}
+
+/* --- Cursor Glow (dark sections) --- */
+.cursor-glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(106, 161, 161, 0.12) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+/* --- Button Shine Sweep --- */
+.btn--primary,
+.btn--white {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn--primary::after,
+.btn--white::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%
+    );
+    transition: none;
+    pointer-events: none;
+}
+
+.btn--primary:hover::after,
+.btn--white:hover::after {
+    animation: btnShine 0.6s ease forwards;
+}
+
+@keyframes btnShine {
+    from { left: -100%; }
+    to { left: 150%; }
+}
+
+/* --- Enhanced Link Hover Underline --- */
+.blog-card__link,
+.contact-info__item a,
+.footer__links a {
+    position: relative;
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .animate,
+    .animate--left,
+    .animate--right,
+    .animate--scale {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

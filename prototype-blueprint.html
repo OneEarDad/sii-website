@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype — Blueprint Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #6aa1a1;
+            --teal-bright: #8fc3c3;
+            --bg: #0e1414;
+            --panel: #131b1b;
+            --line: rgba(106, 161, 161, 0.18);
+            --line-strong: rgba(106, 161, 161, 0.45);
+            --text: #d9e4e4;
+            --muted: #7d8e8e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 4vw, 3rem);
+        }
+
+        .proto-header {
+            max-width: 1200px;
+            margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1.5rem;
+        }
+        .proto-header__eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            color: var(--teal);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .proto-header h1 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .proto-header p {
+            color: var(--muted);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            max-width: 60ch;
+        }
+
+        /* The "specimen case" — grid with hairline graph-paper background */
+        .specimen-case {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .specimen {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background:
+                linear-gradient(var(--panel), var(--panel)),
+                repeating-linear-gradient(0deg, transparent 0 23px, rgba(106,161,161,0.05) 23px 24px),
+                repeating-linear-gradient(90deg, transparent 0 23px, rgba(106,161,161,0.05) 23px 24px);
+            background-blend-mode: normal, normal, normal;
+            overflow: hidden;
+            cursor: pointer;
+            transition: background 400ms ease;
+        }
+        .specimen::before {
+            /* graph-paper overlay so it sits above the panel color */
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent 0 23px, rgba(106,161,161,0.06) 23px 24px),
+                repeating-linear-gradient(90deg, transparent 0 23px, rgba(106,161,161,0.06) 23px 24px);
+            pointer-events: none;
+            transition: opacity 400ms ease;
+        }
+
+        .specimen__photo-wrap {
+            position: absolute;
+            inset: 12%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .specimen__photo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Blueprint mode: aggressive contrast + grayscale crushes the
+               blue drape toward black so only the bright metal survives.
+               `screen` blend against the dark case panel then drops everything
+               below the panel's luminance — the drape vanishes, the metal
+               glows. The teal duotone comes from the sepia+hue-rotate pair. */
+            filter:
+                grayscale(1)
+                brightness(0.55)
+                contrast(2.6)
+                sepia(1)
+                hue-rotate(135deg)
+                saturate(3.5)
+                brightness(1.1);
+            mix-blend-mode: screen;
+            opacity: 0.85;
+            transition: filter 500ms ease, opacity 500ms ease, mix-blend-mode 500ms ease, transform 600ms ease;
+        }
+
+        .specimen__corner {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--line-strong);
+            opacity: 0.7;
+            transition: opacity 400ms ease, border-color 400ms ease;
+        }
+        .specimen__corner--tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+        .specimen__corner--tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+        .specimen__corner--bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+        .specimen__corner--br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        .specimen__meta {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            right: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: var(--teal);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            opacity: 0.7;
+            transition: opacity 400ms ease, color 400ms ease;
+        }
+        .specimen__meta-name {
+            color: var(--muted);
+            text-transform: none;
+            letter-spacing: 0.02em;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 400ms ease, transform 400ms ease;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            margin-top: 0.4rem;
+        }
+
+        /* Hover state — the specimen "lights up" and the real photo fades in */
+        .specimen:hover {
+            background: #0a1212;
+        }
+        .specimen:hover::before { opacity: 0.25; }
+        .specimen:hover .specimen__photo {
+            filter: none;
+            mix-blend-mode: normal;
+            opacity: 1;
+            transform: scale(1.04);
+        }
+        .specimen:hover .specimen__corner {
+            opacity: 1;
+            border-color: var(--teal-bright);
+        }
+        .specimen:hover .specimen__meta {
+            opacity: 1;
+            color: var(--teal-bright);
+        }
+        .specimen:hover .specimen__meta-name {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .proto-footer {
+            max-width: 1200px;
+            margin: clamp(2rem, 4vw, 3rem) auto 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--line);
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="proto-header">
+        <div class="proto-header__eyebrow">Prototype · Blueprint Showcase</div>
+        <h1>Selected instruments</h1>
+        <p>Each instrument rests in its case as a hairline silhouette. Hover or tap to reveal the actual photograph — a quiet way to convey precision without the salesy product-card energy.</p>
+    </header>
+
+    <section class="specimen-case" id="case"></section>
+
+    <footer class="proto-footer">
+        <span>SII · Susol single-use</span>
+        <span id="count">— / —</span>
+    </footer>
+
+    <script>
+        // Pull a handful of varied instruments to show the effect across shapes.
+        // Curated by id so the prototype is deterministic and loads fast.
+        const SHOWCASE_IDS = [
+            'SS09-0627F',  // Halstead Mosquito Curved (forcep)
+            'SS09-0625F',  // Halstead Mosquito Straight
+            'SS12-0030F',  // an artery/dissecting variant if exists
+            'SS07-0036F',  // scissors variant
+            'SS-NN-001',   // nipper
+            'SS-FILE-01',  // file
+            'SS-CUR-01',   // curette
+            'SS-SCALPEL-03'
+        ];
+
+        const SPEC_NO = (i) => `№ ${String(i + 1).padStart(3, '0')}`;
+
+        async function init() {
+            const res = await fetch('data/products.json');
+            const data = await res.json();
+            const all = data.products || [];
+
+            // Prefer curated ids; fall back to whatever exists if any are missing.
+            const byId = new Map(all.map(p => [p.id, p]));
+            let picks = SHOWCASE_IDS.map(id => byId.get(id)).filter(Boolean);
+            if (picks.length < 8) {
+                // Top up with the first products that have a usable image
+                const used = new Set(picks.map(p => p.id));
+                for (const p of all) {
+                    if (picks.length >= 8) break;
+                    if (used.has(p.id)) continue;
+                    if (!p.images || !p.images[0]) continue;
+                    picks.push(p);
+                }
+            }
+
+            const root = document.getElementById('case');
+            picks.forEach((p, i) => {
+                const cell = document.createElement('div');
+                cell.className = 'specimen';
+                cell.innerHTML = `
+                    <span class="specimen__corner specimen__corner--tl"></span>
+                    <span class="specimen__corner specimen__corner--tr"></span>
+                    <span class="specimen__corner specimen__corner--bl"></span>
+                    <span class="specimen__corner specimen__corner--br"></span>
+                    <div class="specimen__photo-wrap">
+                        <img class="specimen__photo" src="${p.images[0]}" alt="${p.name}" loading="lazy">
+                    </div>
+                    <div class="specimen__meta">
+                        <span>${SPEC_NO(i)}</span>
+                        <span>${p.category}</span>
+                        <span class="specimen__meta-name">${p.name}</span>
+                    </div>
+                `;
+                root.appendChild(cell);
+            });
+
+            document.getElementById('count').textContent = `${picks.length} / ${all.length}`;
+        }
+
+        init();
+    </script>
+</body>
+</html>

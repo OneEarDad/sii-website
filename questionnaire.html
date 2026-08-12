@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SII Medical - Website Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 { border-bottom: 2px solid #6aa1a1; padding-bottom: 10px; }
+        h2 { margin-top: 40px; color: #2d4444; }
+        .question {
+            margin: 15px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        .hint { font-size: 0.85em; color: #666; margin-bottom: 5px; }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        textarea { resize: vertical; min-height: 60px; }
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            display: block;
+            margin: 4px 0;
+        }
+        .radio-group input, .checkbox-group input { margin-right: 6px; }
+        .rank-list { list-style: none; padding: 0; }
+        .rank-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 4px 0;
+        }
+        .rank-list select { width: 50px; }
+        .page-check { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+        button#saveBtn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #6aa1a1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button#saveBtn:hover { background: #5a8f8f; }
+        #savedMsg { color: green; margin-left: 15px; display: none; }
+    </style>
+</head>
+<body>
+
+<h1>SII Medical - Website Questionnaire</h1>
+<p>Fill out what you can. Leave anything blank that you're unsure about — we'll use smart defaults.</p>
+
+<form id="questionnaire">
+
+    <!-- 1. BRAND & IDENTITY -->
+    <h2>1. Brand &amp; Identity</h2>
+
+    <div class="question">
+        <label>Are we keeping the existing logo as-is, or is there an updated version?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="logo" value="keep"> Keep existing logo</label>
+            <label><input type="radio" name="logo" value="updated"> There's an updated version</label>
+            <label><input type="radio" name="logo" value="new"> Need a new logo</label>
+        </div>
+        <textarea name="logo_notes" placeholder="Any notes about the logo..."></textarea>
+    </div>
+
+    <div class="question">
+        <label>Do you have brand guidelines (fonts, approved colors, tone of voice)?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="brand_guidelines" value="yes"> Yes</label>
+            <label><input type="radio" name="brand_guidelines" value="no"> No, derive from the logo</label>
+        </div>
+        <textarea name="brand_guidelines_notes" placeholder="If yes, describe or note where to find them..."></textarea>
+    </div>
+
+    <div class="question">
+        <label>Tagline preference</label>
+        <div class="radio-group">
+            <label><input type="radio" name="tagline" value="keep"> Keep "Superior products. Superior outcomes."</label>
+            <label><input type="radio" name="tagline" value="new"> Use a new tagline</label>
+        </div>
+        <input type="text" name="tagline_new" placeholder="If new, enter it here...">
+    </div>
+
+    <div class="question">
+        <label>What tone should the site convey?</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="tone" value="clinical"> Clinical &amp; authoritative</label>
+            <label><input type="checkbox" name="tone" value="modern"> Modern &amp; approachable</label>
+            <label><input type="checkbox" name="tone" value="premium"> Premium &amp; trustworthy</label>
+            <label><input type="checkbox" name="tone" value="other"> Other</label>
+        </div>
+        <input type="text" name="tone_other" placeholder="If other, describe...">
+    </div>
+
+    <!-- 2. TARGET AUDIENCE & GOALS -->
+    <h2>2. Target Audience &amp; Goals</h2>
+
+    <div class="question">
+        <label>Who is the primary audience? (Check all that apply)</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="audience" value="procurement"> Hospital procurement teams</label>
+            <label><input type="checkbox" name="audience" value="surgeons"> Surgeons</label>
+            <label><input type="checkbox" name="audience" value="podiatrists"> Podiatrists</label>
+            <label><input type="checkbox" name="audience" value="sterile_processing"> Sterile processing departments</label>
+            <label><input type="checkbox" name="audience" value="federal"> Federal / government buyers</label>
+            <label><input type="checkbox" name="audience" value="other"> Other</label>
+        </div>
+        <input type="text" name="audience_other" placeholder="If other, specify...">
+    </div>
+
+    <div class="question">
+        <label>What is the #1 action you want a visitor to take?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="primary_cta" value="quote"> Request a quote</label>
+            <label><input type="radio" name="primary_cta" value="call"> Call sales</label>
+            <label><input type="radio" name="primary_cta" value="contact_form"> Fill out contact form</label>
+            <label><input type="radio" name="primary_cta" value="samples"> Request samples</label>
+            <label><input type="radio" name="primary_cta" value="other"> Other</label>
+        </div>
+        <input type="text" name="primary_cta_other" placeholder="If other, specify...">
+    </div>
+
+    <div class="question">
+        <label>Is federal/government sales a major focus that warrants its own prominent section?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="federal_section" value="yes"> Yes, give it a dedicated page/section</label>
+            <label><input type="radio" name="federal_section" value="minor"> Mention it but not a major section</label>
+            <label><input type="radio" name="federal_section" value="no"> No</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Are there secondary audiences?</label>
+        <textarea name="secondary_audiences" placeholder="e.g., students/interns, general public, investors..."></textarea>
+    </div>
+
+    <!-- 3. PAGE STRUCTURE & CONTENT -->
+    <h2>3. Page Structure &amp; Content</h2>
+
+    <div class="question">
+        <label>Which pages do you want on the new site? (Check all that apply)</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="pages" value="home" checked> Home</label>
+            <label><input type="checkbox" name="pages" value="about" checked> About Us</label>
+            <label><input type="checkbox" name="pages" value="why_single_use" checked> Why Single-Use</label>
+            <label><input type="checkbox" name="pages" value="shop" checked> Shop / Products</label>
+            <label><input type="checkbox" name="pages" value="federal"> Federal / Government</label>
+            <label><input type="checkbox" name="pages" value="videos"> Videos</label>
+            <label><input type="checkbox" name="pages" value="blog"> Blog / News</label>
+            <label><input type="checkbox" name="pages" value="faq"> FAQ</label>
+            <label><input type="checkbox" name="pages" value="contact" checked> Contact Us</label>
+            <label><input type="checkbox" name="pages" value="customers"> Customers / Testimonials</label>
+            <label><input type="checkbox" name="pages" value="team"> Team / Leadership</label>
+            <label><input type="checkbox" name="pages" value="interns"> Internship Program</label>
+        </div>
+        <textarea name="pages_other" placeholder="Any other pages you want? Or notes on the above..."></textarea>
+    </div>
+
+    <div class="question">
+        <label>Should "Why Susol / Why SII" and "Why Single Use" be merged into one page?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="merge_why" value="merge"> Yes, merge them</label>
+            <label><input type="radio" name="merge_why" value="separate"> No, keep separate</label>
+            <label><input type="radio" name="merge_why" value="unsure"> Not sure</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Should the internship program have its own page or be a section within About?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="internship_page" value="own_page"> Its own page</label>
+            <label><input type="radio" name="internship_page" value="about_section"> Section within About</label>
+            <label><input type="radio" name="internship_page" value="remove"> Don't include it</label>
+        </div>
+    </div>
+
+    <!-- 4. SHOP / PRODUCT DISPLAY -->
+    <h2>4. Shop / Product Display</h2>
+
+    <div class="question">
+        <label>How should products be organized?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="product_org" value="category"> By category (Forceps, Scissors, etc.)</label>
+            <label><input type="radio" name="product_org" value="specialty"> By medical specialty (Podiatry, ENT, etc.)</label>
+            <label><input type="radio" name="product_org" value="both"> Both (filterable)</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>What info should each product card show? (Check all that apply)</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="product_info" value="sku" checked> SKU / Product code</label>
+            <label><input type="checkbox" name="product_info" value="name" checked> Product name</label>
+            <label><input type="checkbox" name="product_info" value="image" checked> Product image</label>
+            <label><input type="checkbox" name="product_info" value="description"> Description</label>
+            <label><input type="checkbox" name="product_info" value="specs"> Specifications (size, material, etc.)</label>
+            <label><input type="checkbox" name="product_info" value="box_qty"> Box quantity</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Do you have high-resolution product photos?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="product_photos" value="yes"> Yes, we have them</label>
+            <label><input type="radio" name="product_photos" value="some"> We have some</label>
+            <label><input type="radio" name="product_photos" value="no"> No, we'll need to create them</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Should products have individual detail pages?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="product_detail_pages" value="yes"> Yes, each product gets its own page</label>
+            <label><input type="radio" name="product_detail_pages" value="no"> No, catalog grid view is sufficient</label>
+            <label><input type="radio" name="product_detail_pages" value="modal"> Use a popup/modal for details</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Do you want filtering/search on the Shop page?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="product_filter" value="yes"> Yes</label>
+            <label><input type="radio" name="product_filter" value="no"> No</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>What should the CTA (call-to-action) be on product pages?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="product_cta" value="quote"> "Request a Quote"</label>
+            <label><input type="radio" name="product_cta" value="contact"> "Contact Sales"</label>
+            <label><input type="radio" name="product_cta" value="spec_sheet"> "Download Spec Sheet"</label>
+            <label><input type="radio" name="product_cta" value="other"> Other</label>
+        </div>
+        <input type="text" name="product_cta_other" placeholder="If other, specify...">
+    </div>
+
+    <div class="question">
+        <label>Should Procedure Pack Sets be featured separately/prominently?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="packs_prominent" value="yes"> Yes</label>
+            <label><input type="radio" name="packs_prominent" value="no"> No, list with everything else</label>
+        </div>
+    </div>
+
+    <!-- 5. CONTENT & MEDIA -->
+    <h2>5. Content &amp; Media</h2>
+
+    <div class="question">
+        <label>Do you have high-res photos of the team, facility, or instruments in use?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="photos" value="yes"> Yes</label>
+            <label><input type="radio" name="photos" value="some"> Some</label>
+            <label><input type="radio" name="photos" value="no"> No</label>
+        </div>
+        <textarea name="photos_notes" placeholder="Any details on what photos you have..."></textarea>
+    </div>
+
+    <div class="question">
+        <label>The current site has 12 videos. Should all be carried over?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="videos" value="all"> Yes, carry all over</label>
+            <label><input type="radio" name="videos" value="some"> Only some of them</label>
+            <label><input type="radio" name="videos" value="none"> No videos</label>
+        </div>
+        <textarea name="videos_notes" placeholder="If only some, which ones? Are they on YouTube/Vimeo?"></textarea>
+    </div>
+
+    <div class="question">
+        <label>Do you have testimonials or case studies from hospitals/surgeons?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="testimonials" value="yes"> Yes</label>
+            <label><input type="radio" name="testimonials" value="no"> No</label>
+            <label><input type="radio" name="testimonials" value="can_get"> We can get them</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Do you want a blog section? If so, who will maintain it?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="blog" value="yes"> Yes</label>
+            <label><input type="radio" name="blog" value="no"> No</label>
+        </div>
+        <input type="text" name="blog_who" placeholder="Who will write/maintain blog posts?">
+    </div>
+
+    <div class="question">
+        <label>Any downloadable resources to offer?</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="downloads" value="catalog"> Product catalog (PDF)</label>
+            <label><input type="checkbox" name="downloads" value="spec_sheets"> Spec sheets</label>
+            <label><input type="checkbox" name="downloads" value="certificates"> Compliance certificates</label>
+            <label><input type="checkbox" name="downloads" value="brochures"> Brochures</label>
+            <label><input type="checkbox" name="downloads" value="none"> None</label>
+        </div>
+    </div>
+
+    <!-- 6. KEY MESSAGING -->
+    <h2>6. Key Messaging &amp; Differentiators</h2>
+
+    <div class="question">
+        <label>Rank these value propositions by importance (1 = most important)</label>
+        <ul class="rank-list">
+            <li>
+                <select name="rank_infection"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                Infection prevention (eliminates cross-contamination risk)
+            </li>
+            <li>
+                <select name="rank_cost"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                Cost savings (no reprocessing/sterilization costs)
+            </li>
+            <li>
+                <select name="rank_quality"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                Precision quality (comparable to reusable instruments)
+            </li>
+            <li>
+                <select name="rank_convenience"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                Convenience (sterile, ready-to-use)
+            </li>
+            <li>
+                <select name="rank_environmental"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                Environmental benefit (40% less steel, less packaging)
+            </li>
+            <li>
+                <select name="rank_fda"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                FDA registered, TAA/BAA compliant
+            </li>
+            <li>
+                <select name="rank_bailey"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                Backed by Bailey Instruments (35+ years UK manufacturing)
+            </li>
+            <li>
+                <select name="rank_steris"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+                STERIS sterilization partnership
+            </li>
+        </ul>
+    </div>
+
+    <div class="question">
+        <label>Should the Bailey Instruments / Susol brand story be prominent?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="bailey_prominence" value="prominent"> Yes, prominently feature them</label>
+            <label><input type="radio" name="bailey_prominence" value="mention"> Mention but SII is the focus</label>
+            <label><input type="radio" name="bailey_prominence" value="minimal"> Minimal mention</label>
+        </div>
+    </div>
+
+    <!-- 7. TECHNICAL -->
+    <h2>7. Technical &amp; Functional</h2>
+
+    <div class="question">
+        <label>Tech preference?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="tech" value="static"> Static site (HTML/CSS/JS)</label>
+            <label><input type="radio" name="tech" value="react"> React / Next.js</label>
+            <label><input type="radio" name="tech" value="wordpress"> WordPress</label>
+            <label><input type="radio" name="tech" value="no_pref"> No preference</label>
+            <label><input type="radio" name="tech" value="other"> Other</label>
+        </div>
+        <input type="text" name="tech_other" placeholder="If other, specify...">
+    </div>
+
+    <div class="question">
+        <label>Do you need a CMS so non-developers can update content?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="cms" value="yes"> Yes</label>
+            <label><input type="radio" name="cms" value="no"> No</label>
+            <label><input type="radio" name="cms" value="unsure"> Not sure</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Contact form — where should submissions go?</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="contact_email" value="sales"> sales@siimedical.com</label>
+            <label><input type="checkbox" name="contact_email" value="team"> team@siimedical.com</label>
+            <label><input type="checkbox" name="contact_email" value="other"> Other</label>
+        </div>
+        <input type="text" name="contact_email_other" placeholder="If other, enter email...">
+    </div>
+
+    <div class="question">
+        <label>Do you need a separate "Request a Quote" form?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="quote_form" value="yes"> Yes</label>
+            <label><input type="radio" name="quote_form" value="no"> No, the contact form is enough</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Third-party integrations needed?</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="integrations" value="crm"> CRM (Salesforce, HubSpot, etc.)</label>
+            <label><input type="checkbox" name="integrations" value="email_marketing"> Email marketing (Mailchimp, etc.)</label>
+            <label><input type="checkbox" name="integrations" value="analytics"> Analytics (Google Analytics, etc.)</label>
+            <label><input type="checkbox" name="integrations" value="chat"> Live chat</label>
+            <label><input type="checkbox" name="integrations" value="none"> None</label>
+        </div>
+        <input type="text" name="integrations_other" placeholder="Specify which tools if applicable...">
+    </div>
+
+    <div class="question">
+        <label>Do you need WCAG 2.1 AA accessibility compliance?</label>
+        <p class="hint">Likely required if serving federal clients</p>
+        <div class="radio-group">
+            <label><input type="radio" name="accessibility" value="yes"> Yes</label>
+            <label><input type="radio" name="accessibility" value="no"> No</label>
+            <label><input type="radio" name="accessibility" value="unsure"> Not sure</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Domain — staying on siimedical.com?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="domain" value="same"> Yes, siimedical.com</label>
+            <label><input type="radio" name="domain" value="new"> New domain</label>
+        </div>
+        <input type="text" name="domain_new" placeholder="If new, enter domain...">
+    </div>
+
+    <!-- 8. DESIGN -->
+    <h2>8. Design &amp; Animation</h2>
+
+    <div class="question">
+        <label>Any websites you admire the look/feel of?</label>
+        <textarea name="inspiration" placeholder="Paste URLs or describe what you like about them..."></textarea>
+    </div>
+
+    <div class="question">
+        <label>Animation style preference</label>
+        <div class="radio-group">
+            <label><input type="radio" name="animation" value="subtle"> Subtle &amp; professional</label>
+            <label><input type="radio" name="animation" value="bold"> Bold &amp; modern</label>
+            <label><input type="radio" name="animation" value="minimal"> Minimal</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Homepage hero — what do you want at the top?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="hero" value="video"> Hero video/animation</label>
+            <label><input type="radio" name="hero" value="image"> Static hero image</label>
+            <label><input type="radio" name="hero" value="slider"> Image slider/carousel</label>
+            <label><input type="radio" name="hero" value="unsure"> Not sure</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Dark mode support?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="dark_mode" value="yes"> Yes</label>
+            <label><input type="radio" name="dark_mode" value="no"> No</label>
+            <label><input type="radio" name="dark_mode" value="maybe"> Maybe later</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Anything from the current site you want to keep or avoid?</label>
+        <textarea name="keep_avoid" placeholder="e.g., 'Keep the instrument images', 'Avoid the current layout'..."></textarea>
+    </div>
+
+    <!-- 9. SEO & LAUNCH -->
+    <h2>9. SEO &amp; Launch</h2>
+
+    <div class="question">
+        <label>Specific keywords you want to rank for?</label>
+        <textarea name="keywords" placeholder="e.g., single-use surgical instruments, disposable surgical tools..."></textarea>
+    </div>
+
+    <div class="question">
+        <label>Do you need URL redirects from the old site?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="redirects" value="yes"> Yes</label>
+            <label><input type="radio" name="redirects" value="no"> No</label>
+            <label><input type="radio" name="redirects" value="unsure"> Not sure</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Target launch date?</label>
+        <input type="text" name="launch_date" placeholder="e.g., June 2026, ASAP, no rush...">
+    </div>
+
+    <div class="question">
+        <label>Hosting preference?</label>
+        <div class="radio-group">
+            <label><input type="radio" name="hosting" value="vercel"> Vercel</label>
+            <label><input type="radio" name="hosting" value="netlify"> Netlify</label>
+            <label><input type="radio" name="hosting" value="aws"> AWS</label>
+            <label><input type="radio" name="hosting" value="existing"> Existing host</label>
+            <label><input type="radio" name="hosting" value="no_pref"> No preference</label>
+        </div>
+    </div>
+
+    <!-- 10. ANYTHING ELSE -->
+    <h2>10. Anything Else?</h2>
+
+    <div class="question">
+        <label>Is there anything else we should know?</label>
+        <textarea name="anything_else" placeholder="Any other requirements, concerns, ideas..." style="min-height: 100px;"></textarea>
+    </div>
+
+    <br>
+    <button type="button" id="saveBtn">Save Responses</button>
+    <span id="savedMsg">Saved!</span>
+</form>
+
+<script>
+    const form = document.getElementById('questionnaire');
+
+    // Load saved data
+    const saved = localStorage.getItem('sii_questionnaire');
+    if (saved) {
+        const data = JSON.parse(saved);
+        for (const [key, value] of Object.entries(data)) {
+            const elements = form.elements[key];
+            if (!elements) continue;
+            if (elements.length && elements[0]?.type === 'radio') {
+                for (const el of elements) {
+                    if (el.value === value) el.checked = true;
+                }
+            } else if (elements.length && elements[0]?.type === 'checkbox') {
+                const vals = Array.isArray(value) ? value : [value];
+                for (const el of elements) {
+                    el.checked = vals.includes(el.value);
+                }
+            } else if (elements.tagName) {
+                elements.value = value;
+            }
+        }
+    }
+
+    // Save
+    document.getElementById('saveBtn').addEventListener('click', function() {
+        const data = {};
+        const formData = new FormData(form);
+
+        // Get all text/textarea/select values
+        for (const el of form.elements) {
+            if (!el.name) continue;
+            if (el.type === 'radio') {
+                if (el.checked) data[el.name] = el.value;
+            } else if (el.type === 'checkbox') {
+                if (!data[el.name]) data[el.name] = [];
+                if (el.checked) data[el.name].push(el.value);
+            } else {
+                data[el.name] = el.value;
+            }
+        }
+
+        localStorage.setItem('sii_questionnaire', JSON.stringify(data));
+
+        const msg = document.getElementById('savedMsg');
+        msg.style.display = 'inline';
+        setTimeout(() => msg.style.display = 'none', 2000);
+    });
+</script>
+
+</body>
+</html>

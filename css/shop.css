@@ -1,0 +1,941 @@
+/* ============================================
+   SII Medical — Shop Page Styles
+   Dark editorial design, matching homepage aesthetic
+   ============================================ */
+
+/* --- Page Header Override (larger for shop) --- */
+body:has(#shop-container) .page-header {
+    padding: clamp(5rem, 12vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+    /* Taller so the instrument photo has room to read */
+    min-height: clamp(360px, 50vh, 480px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1817 0%, var(--charcoal) 40%, var(--deep-teal) 100%);
+    text-align: left;
+}
+
+/* Zoom in and recenter on the nipper. The hero JS overrides transform
+   from `data-scale` on every scroll/mouse-move, so update that attribute
+   too — see shop.html. The CSS scale is the at-rest baseline. */
+body:has(#shop-container) .hero-img__photo {
+    object-position: center 50%;
+    transform: translate3d(0, 0, 0) scale(1.18);
+}
+
+body:has(#shop-container) .hero-img__overlay {
+    background:
+        /* Horizontal: dark at left where text sits, fades clear on the right */
+        linear-gradient(to right,
+            rgba(20, 18, 17, 0.85) 0%,
+            rgba(20, 18, 17, 0.5) 45%,
+            rgba(20, 18, 17, 0.15) 80%,
+            rgba(20, 18, 17, 0.05) 100%),
+        /* Vertical: subtle floor of dark so wave divider blends cleanly */
+        linear-gradient(to bottom,
+            rgba(20, 18, 17, 0.0) 60%,
+            rgba(20, 18, 17, 0.55) 100%);
+}
+
+body:has(#shop-container) .page-header .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+body:has(#shop-container) .page-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    /* Mild shadow so the title stays crisp against the lighter overlay */
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+
+body:has(#shop-container) .page-header p {
+    margin: 0;
+    max-width: 520px;
+    text-align: left;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* --- Featured Packs Section --- */
+.shop-featured {
+    background: var(--off-white, #f5f3f1);
+    padding: var(--space-2xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.shop-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal), transparent);
+    opacity: 0.4;
+}
+
+.shop-featured__label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin-bottom: var(--space-sm);
+}
+
+.shop-featured__title {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-xl);
+}
+
+.shop-featured__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 600px) {
+    .shop-featured__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .shop-featured__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* --- Featured carousel (mobile) ---
+   On phones the 6 pack cards would stack into a tall column, so instead we
+   turn the grid into a horizontal, snap-scrolling carousel. Cards sit at 82%
+   width so the next one peeks in — a native "there's more, swipe" signal —
+   and the track bleeds to both screen edges (negative margin cancels the
+   container padding) so cards can scroll fully off-screen. */
+@media (max-width: 599px) {
+    .shop-featured__grid {
+        display: flex;
+        grid-template-columns: none;
+        gap: var(--space-md);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: var(--space-md);
+        margin-inline: calc(-1 * var(--space-md));
+        padding-inline: var(--space-md);
+        padding-bottom: var(--space-xs);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;          /* Firefox */
+    }
+    .shop-featured__grid::-webkit-scrollbar { display: none; }  /* WebKit */
+
+    .shop-featured__card {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+    }
+}
+
+/* Pagination dots — only meaningful for the mobile carousel */
+.shop-featured__dots { display: none; }
+
+@media (max-width: 599px) {
+    .shop-featured__dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: var(--space-md);
+    }
+    .shop-featured__dot {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: var(--light-silver, #c6c3c2);
+        cursor: pointer;
+        transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .shop-featured__dot.is-active {
+        background: var(--teal);
+        transform: scale(1.35);
+    }
+}
+
+.shop-featured__card {
+    background: var(--white);
+    border: 1px solid var(--border, #e8e6e4);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(.62, .16, .13, 1.01);
+    position: relative;
+}
+
+.shop-featured__card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.shop-featured__card:hover {
+    border-color: var(--teal);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(48, 45, 45, 0.12);
+}
+
+.shop-featured__card:hover::after {
+    transform: scaleX(1);
+}
+
+.shop-featured__card-img {
+    aspect-ratio: 4/3;
+    background: #fafaf9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #f0eeec;
+}
+
+.shop-featured__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--space-md);
+    transition: transform 0.5s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.shop-featured__card:hover .shop-featured__card-img img {
+    transform: scale(1.05);
+}
+
+.shop-featured__card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    /* Stay on top of the photo's hover transform (transform creates a
+       stacking context that would otherwise rise above the badge). */
+    z-index: 2;
+}
+
+.shop-featured__card-body {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+}
+
+.shop-featured__card-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: var(--space-xs);
+    line-height: 1.3;
+}
+
+.shop-featured__card-sku {
+    font-size: 0.8rem;
+    color: var(--cool-gray);
+    margin-bottom: var(--space-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.shop-featured__card-desc {
+    font-size: 0.85rem;
+    color: var(--steel-gray);
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+}
+
+.shop-featured__card-contents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.shop-featured__card-contents span {
+    font-size: 0.75rem;
+    color: var(--deep-teal);
+    background: rgba(106, 161, 161, 0.08);
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(106, 161, 161, 0.2);
+}
+
+/* ============================================
+   ECOMMERCE LAYOUT — sidebar filters + grid
+   Mobile-first; sidebar collapses into a drawer
+   ============================================ */
+
+.shop-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+}
+
+@media (min-width: 900px) {
+    .shop-layout {
+        grid-template-columns: 280px 1fr;
+        gap: var(--space-2xl);
+        align-items: start;
+    }
+}
+
+@media (min-width: 1200px) {
+    .shop-layout {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
+/* --- Sidebar (desktop column) --- */
+.shop-sidebar {
+    display: none; /* hidden on mobile — accessed via drawer */
+}
+
+@media (min-width: 900px) {
+    .shop-sidebar {
+        display: block;
+        position: sticky;
+        top: var(--space-lg);
+        max-height: calc(100vh - var(--space-2xl));
+        overflow-y: auto;
+        padding-right: var(--space-sm);
+        background: var(--white);
+        border: 1px solid var(--border, #e8e6e4);
+        border-radius: 12px;
+        padding: var(--space-lg);
+    }
+}
+
+.shop-sidebar__section {
+    margin-bottom: var(--space-lg);
+}
+
+.shop-sidebar__section:last-of-type {
+    margin-bottom: var(--space-md);
+}
+
+.shop-sidebar__heading {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--cool-gray, #8a9494);
+    margin-bottom: var(--space-sm);
+}
+
+/* Channel buttons (All / Federal / Commercial) */
+.shop-sidebar__channels {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.shop-channel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--charcoal);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    text-align: left;
+}
+
+.shop-channel-btn:hover {
+    background: var(--off-white, #f5f3f1);
+}
+
+.shop-channel-btn.is-active {
+    background: var(--charcoal, #302d2d);
+    border-color: var(--charcoal, #302d2d);
+    color: var(--white);
+}
+
+.shop-channel-btn__count {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--steel-gray);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 8px;
+    border-radius: 999px;
+    min-width: 28px;
+    text-align: center;
+}
+
+.shop-channel-btn.is-active .shop-channel-btn__count {
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--white);
+}
+
+/* Search field inside sidebar */
+.shop-sidebar__search {
+    position: relative;
+}
+
+.shop-sidebar__search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cool-gray);
+    pointer-events: none;
+}
+
+.shop-sidebar__search-input {
+    width: 100%;
+    padding: 10px 12px 10px 36px;
+    border: 1px solid var(--border, #e8e6e4);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    background: var(--white);
+    color: var(--charcoal);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-sidebar__search-input::placeholder {
+    color: var(--cool-gray);
+}
+
+.shop-sidebar__search-input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(106, 161, 161, 0.15);
+}
+
+/* Filter lists (categories, specialties) */
+.shop-filter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.shop-filter-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.shop-filter-item:hover {
+    background: var(--off-white, #f5f3f1);
+}
+
+.shop-filter-item.is-active {
+    background: rgba(106, 161, 161, 0.12);
+    color: var(--deep-teal);
+    font-weight: 600;
+}
+
+.shop-filter-item__count {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--cool-gray);
+}
+
+.shop-filter-item.is-active .shop-filter-item__count {
+    color: var(--teal);
+}
+
+/* Clear all */
+.shop-clear-all {
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: 1px solid var(--border, #e8e6e4);
+    border-radius: 8px;
+    color: var(--steel-gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.shop-clear-all:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+}
+
+/* --- Main column (results bar + grid) --- */
+.shop-main {
+    min-width: 0; /* prevent grid overflow */
+}
+
+.shop-main__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border, #e8e6e4);
+}
+
+.shop-main__count {
+    font-size: 0.92rem;
+    color: var(--steel-gray);
+    font-weight: 500;
+}
+
+/* Mobile "Filters" trigger */
+.shop-mobile-filters {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--charcoal);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.shop-mobile-filters:hover {
+    background: var(--deep-teal);
+}
+
+.shop-mobile-filters__badge {
+    background: var(--teal);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    min-width: 20px;
+    text-align: center;
+}
+
+@media (min-width: 900px) {
+    .shop-mobile-filters { display: none; }
+}
+
+/* --- Mobile drawer --- */
+.shop-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+}
+
+.shop-drawer__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 24, 23, 0.55);
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.shop-drawer.is-open .shop-drawer__backdrop {
+    opacity: 1;
+}
+
+.shop-drawer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(360px, 88vw);
+    background: var(--white);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(.62, .16, .13, 1.01);
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-drawer.is-open .shop-drawer__panel {
+    transform: translateX(0);
+}
+
+.shop-drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border, #e8e6e4);
+    font-size: 1.05rem;
+}
+
+.shop-drawer__close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--off-white, #f5f3f1);
+    color: var(--charcoal);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.shop-drawer__body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: var(--space-lg);
+}
+
+.shop-drawer__foot {
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--border, #e8e6e4);
+    background: var(--white);
+}
+
+.shop-drawer__apply {
+    width: 100%;
+    padding: 12px;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.shop-drawer__apply:hover {
+    background: var(--deep-teal);
+}
+
+/* --- Product Grid --- */
+/* Mobile-first: 2-up catalog even on the smallest phones so the page reads
+   like a product grid, not a single endless column. Columns scale up with
+   width; the desktop sidebar eats ~300px, so 3-up kicks in once the main
+   column has room. */
+.shop__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .shop__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+@media (min-width: 1500px) {
+    .shop__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ============================================
+   PRODUCT CARDS — ecommerce style
+   White surface, full-bleed light photo area
+   ============================================ */
+.shop__card {
+    background: var(--white);
+    border: 1px solid var(--border, #e8e6e4);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(.62, .16, .13, 1.01),
+                box-shadow 0.35s cubic-bezier(.62, .16, .13, 1.01),
+                border-color 0.25s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(48, 45, 45, 0.10);
+    border-color: var(--teal);
+}
+
+.shop__card-img {
+    position: relative;
+    background: #fafaf9;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #f0eeec;
+}
+
+.shop__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--space-md);
+    transition: transform 0.5s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.shop__card:hover .shop__card-img img {
+    transform: scale(1.05);
+}
+
+.shop__card-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #fafaf9;
+}
+
+/* Badges floating over the image — refined pill style */
+.shop__card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--charcoal);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(48, 45, 45, 0.15);
+}
+
+.shop__card-federal {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--teal);
+    padding: 4px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(106, 161, 161, 0.32);
+}
+
+.shop__card-body {
+    padding: var(--space-md);
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop__card-category {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    margin-bottom: 6px;
+}
+
+.shop__card-name {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    color: var(--charcoal);
+    flex: 1 1 auto;
+}
+
+.shop__card-size {
+    font-size: 0.82rem;
+    color: var(--steel-gray);
+    margin-bottom: 2px;
+}
+
+.shop__card-sku {
+    font-size: 0.76rem;
+    color: var(--cool-gray);
+    margin-bottom: 0;
+    letter-spacing: 0.02em;
+}
+
+/* --- Empty state --- */
+.shop__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-2xl);
+}
+
+.shop__empty p {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-lg);
+}
+
+/* Modal styles moved to css/modal.css (shared with home page) */
+
+/* --- Shop Section Divider --- */
+.shop-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+/* --- Catalog Section --- */
+.shop-catalog {
+    padding: var(--space-2xl) 0;
+    background: var(--off-white, #f5f3f1);
+}
+
+.shop-catalog__label,
+.shop-catalog__title {
+    /* The catalog header now lives inside the sidebar/main bar — keep these
+       hidden for visual cleanliness while preserving them in markup for SEO. */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+/* --- Card enter animation --- */
+.shop__card.animate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s cubic-bezier(.62, .16, .13, 1.01),
+                transform 0.5s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.shop__card.animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.shop-featured__card.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(.62, .16, .13, 1.01),
+                transform 0.6s cubic-bezier(.62, .16, .13, 1.01);
+}
+
+.shop-featured__card.animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for featured cards */
+.shop-featured__card.stagger-1 { transition-delay: 0s; }
+.shop-featured__card.stagger-2 { transition-delay: 0.1s; }
+.shop-featured__card.stagger-3 { transition-delay: 0.2s; }
+.shop-featured__card.stagger-4 { transition-delay: 0.3s; }
+.shop-featured__card.stagger-5 { transition-delay: 0.4s; }
+.shop-featured__card.stagger-6 { transition-delay: 0.5s; }
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 600px) {
+    .shop-featured__card-body {
+        padding: var(--space-md);
+    }
+
+    /* Compact catalog cards for the 2-up phone grid: tighter padding and
+       type so name/SKU stay readable in a ~160px column without wrapping
+       into a wall of text. */
+    .shop__card-body {
+        padding: var(--space-sm);
+    }
+
+    .shop__card-category {
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 4px;
+    }
+
+    .shop__card-name {
+        font-size: 0.85rem;
+        line-height: 1.25;
+        margin-bottom: 4px;
+    }
+
+    .shop__card-size {
+        font-size: 0.74rem;
+        margin-bottom: 1px;
+    }
+
+    .shop__card-sku {
+        font-size: 0.68rem;
+    }
+
+    .shop__card-img img {
+        padding: var(--space-sm);
+    }
+
+    /* Badges scale down so they don't crowd the smaller photo area */
+    .shop__card-badge,
+    .shop__card-federal {
+        font-size: 0.56rem;
+        padding: 3px 7px;
+        top: 8px;
+    }
+
+    .shop__card-badge { right: 8px; }
+    .shop__card-federal { left: 8px; }
+}
+
+/* --- Card hover-swap (second image revealed on hover) --- */
+.shop__card-img-hover,
+.shop-featured__card-img .shop__card-img-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+.shop__card:hover .shop__card-img-hover,
+.shop-featured__card:hover .shop__card-img-hover {
+    opacity: 1;
+}
+
+/* Modal gallery styles moved to css/modal.css */
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .shop__card,
+    .shop-featured__card,
+    .shop__card-img img,
+    .shop-featured__card-img img,
+    .shop__card-img-hover,
+    .shop__modal-thumb {
+        transition: none !important;
+    }
+
+    .shop__card::after,
+    .shop-featured__card::after {
+        transition: none !important;
+    }
+}
+

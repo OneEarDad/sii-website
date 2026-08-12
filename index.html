@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SII Medical | US distributor of Susol single-use sterile surgical instruments. Superior products. Superior outcomes.">
+    <title>SII Medical | Surgical Instruments & Innovations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <!-- ========== INTRO OVERLAY ========== -->
+    <div class="intro" id="intro" aria-hidden="true">
+        <div class="intro__logo">
+            <img src="SII Logo SVG.svg" alt="" class="intro__logo-img">
+            <div class="intro__line"></div>
+        </div>
+    </div>
+
+    <div id="nav-placeholder"></div>
+
+    <main>
+
+        <!-- ========== HERO ========== -->
+        <section class="hero" id="hero">
+            <!-- Full-bleed Background Video -->
+            <div class="hero__video-wrap" aria-hidden="true">
+                <video class="hero__video" id="heroVideo"
+                    autoplay muted loop playsinline
+                    poster="assets/video/hero-poster.jpg">
+                    <source src="assets/video/hero-bg.webm" type="video/webm">
+                    <source src="assets/video/hero-bg.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Animated orbital rings (layered over video) -->
+            <div class="hero__orbital" aria-hidden="true">
+                <div class="hero__ring hero__ring--1"></div>
+                <div class="hero__ring hero__ring--2"></div>
+                <div class="hero__ring hero__ring--3"></div>
+                <div class="hero__dot hero__dot--1"></div>
+                <div class="hero__dot hero__dot--2"></div>
+                <div class="hero__dot hero__dot--3"></div>
+            </div>
+
+            <!-- Label positioned at top of hero -->
+            <div class="hero__top-label">Surgical Instruments &amp; Innovations</div>
+
+            <div class="hero__inner">
+                <h1 class="hero__title">
+                    <span class="hero__line hero__line--1"><span class="hero__line-inner">Precision That Performs,</span></span>
+                    <span class="hero__line hero__line--2"><span class="hero__line-inner"><span class="hero__title-accent">Care That Counts</span></span></span>
+                </h1>
+                <div class="hero__bottom">
+                    <p class="hero__desc">
+                        Single-use, sterile surgical instruments, precision-engineered by Bailey Instruments of England, delivered across America by SII Medical.
+                    </p>
+                    <div class="hero__ctas">
+                        <a href="shop.html" class="btn btn--primary btn--glitch">Explore Instruments</a>
+                        <a href="contact.html" class="btn btn--secondary btn--secondary-light btn--glitch">Request a Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== INSTRUMENT MARQUEE ========== -->
+        <section class="home-marquee" aria-label="Our instrument range">
+            <div class="home-marquee__viewport">
+                <div class="home-marquee__track" id="marqueeTrack" aria-hidden="true">
+                    <!-- Populated by js/home-marquee.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MARQUEE → ETHOS ========== -->
+        <div class="section-waves section-waves--white" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== ETHOS ========== -->
+        <section class="home-ethos">
+            <div class="container">
+                <div class="home-ethos__inner">
+                    <div class="home-ethos__left animate">
+                        <span class="section__label">Our Ethos</span>
+                        <h2 class="home-ethos__heading">
+                            Precision matters.<br>
+                            <span class="accent-text">Outcomes prove it.</span>
+                        </h2>
+                    </div>
+                    <div class="home-ethos__right animate">
+                        <p class="home-ethos__text">
+                            Healthcare providers deserve instruments that match their standard of care. Precision-ground, factory-sterile, and ready the moment they're needed. No reprocessing. No cross-contamination risk. Just reliable performance, every single time.
+                        </p>
+                        <a href="why-single-use.html" class="btn btn--primary">Why Single-Use</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ETHOS → PILLARS ========== -->
+        <div class="section-waves section-waves--dark" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== FOUR PILLARS ========== -->
+        <section class="home-pillars">
+            <div class="container">
+                <div class="home-pillars__header animate">
+                    <span class="section__label">What Sets Us Apart</span>
+                    <h2>The SII Advantage</h2>
+                </div>
+                <div class="home-pillars__grid">
+                    <div class="home-pillars__card animate stagger-1">
+                        <div class="home-pillars__number">01</div>
+                        <div class="home-pillars__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Infection Prevention</h3>
+                        <p>Eliminate cross-contamination risk entirely. Every instrument is factory-sealed, sterile, and used once, then safely disposed.</p>
+                    </div>
+                    <div class="home-pillars__card animate stagger-2">
+                        <div class="home-pillars__number">02</div>
+                        <div class="home-pillars__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        </div>
+                        <h3>Cost Efficiency</h3>
+                        <p>No autoclaves. No chemical disposal. No biological testing. No sterilization staff. Reduce overhead while improving safety.</p>
+                    </div>
+                    <div class="home-pillars__card animate stagger-3">
+                        <div class="home-pillars__number">03</div>
+                        <div class="home-pillars__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                        <h3>Precision Quality</h3>
+                        <p>Manufactured by Bailey Instruments with 35+ years of surgical instrument expertise. Sharper edges, better ergonomics, consistent performance.</p>
+                    </div>
+                    <div class="home-pillars__card animate stagger-4">
+                        <div class="home-pillars__number">04</div>
+                        <div class="home-pillars__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        </div>
+                        <h3>Ready When You Are</h3>
+                        <p>Single package. Single patient. Single procedure. Pre-wrapped and sterile. Grab, use, and dispose. No prep, no wait.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PILLARS → PRODUCTS ========== -->
+        <div class="section-waves section-waves--off-white" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== PRODUCT PREVIEW ========== -->
+        <section class="home-products">
+            <div class="container">
+                <div class="home-products__header">
+                    <div class="home-products__header-text animate">
+                        <span class="section__label">Our Instruments</span>
+                        <h2>Engineered for Excellence</h2>
+                        <p>Single-use instruments, delivered ready for immediate use. Saving time and money while also protecting the patient by lowering risk of healthcare associated infections (HAI).</p>
+                    </div>
+                    <a href="shop.html" class="btn btn--secondary animate">View All Instruments</a>
+                </div>
+                <div class="home-products__grid" id="featuredProducts">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PRODUCTS → TRUST ========== -->
+        <div class="section-waves section-waves--teal" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== TRUST BAR ========== -->
+        <section class="home-trust">
+            <div class="container">
+                <div class="home-trust__grid">
+                    <div class="home-trust__item animate stagger-1">
+                        <div class="home-trust__number" data-count="40" data-suffix="+">0</div>
+                        <p>VA &amp; Federal Facilities Served</p>
+                    </div>
+                    <div class="home-trust__item animate stagger-2">
+                        <div class="home-trust__number" data-count="35" data-suffix="+">0</div>
+                        <p>Years of Manufacturing Excellence</p>
+                    </div>
+                    <div class="home-trust__item animate stagger-3">
+                        <div class="home-trust__number" data-count="31">0</div>
+                        <p>Precision Instruments</p>
+                    </div>
+                    <div class="home-trust__item animate stagger-4">
+                        <div class="home-trust__number" data-count="99" data-suffix="%">0</div>
+                        <p>Next-Day Processing Success</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== TRUST → WHY ========== -->
+        <div class="section-waves section-waves--white" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== WHY SINGLE-USE TEASER ========== -->
+        <section class="home-why">
+            <div class="container">
+                <div class="home-why__inner">
+                    <div class="home-why__content animate">
+                        <span class="section__label">The Smarter Choice</span>
+                        <h2>Why Healthcare Leaders<br>Are Making the Switch</h2>
+                        <p>
+                            Healthcare Associated Infections cost the US healthcare system over $28 billion annually. Single-use instruments eliminate the reprocessing chain entirely, removing the risk at its source.
+                        </p>
+                        <div class="home-why__stats">
+                            <div class="home-why__stat">
+                                <strong>1 in 31</strong>
+                                <span>hospital patients acquires an HAI on any given day</span>
+                            </div>
+                            <div class="home-why__stat">
+                                <strong>$28.4B</strong>
+                                <span>annual cost of HAIs to the US healthcare system</span>
+                            </div>
+                        </div>
+                        <a href="why-single-use.html" class="btn btn--primary">Learn More</a>
+                    </div>
+                    <div class="home-why__visual animate--right">
+                        <div class="home-why__process">
+                            <div class="home-why__process-title">Single-Use Workflow</div>
+                            <div class="home-why__step">
+                                <div class="home-why__step-num">1</div>
+                                <span>Open sterile package</span>
+                            </div>
+                            <div class="home-why__step">
+                                <div class="home-why__step-num">2</div>
+                                <span>Use instrument</span>
+                            </div>
+                            <div class="home-why__step">
+                                <div class="home-why__step-num">3</div>
+                                <span>Safely dispose</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== WHY → SPECIALTIES ========== -->
+        <div class="section-waves section-waves--off-white" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== SPECIALTIES ========== -->
+        <section class="home-specialties">
+            <div class="container">
+                <div class="home-specialties__header animate">
+                    <span class="section__label">Medical Specialties</span>
+                    <h2>Instruments for Every Practice</h2>
+                </div>
+                <div class="home-specialties__grid">
+                    <div class="home-specialties__tag animate stagger-1">General Surgery</div>
+                    <div class="home-specialties__tag animate stagger-2">Podiatry</div>
+                    <div class="home-specialties__tag animate stagger-3">ENT</div>
+                    <div class="home-specialties__tag animate stagger-4">Wound Care</div>
+                    <div class="home-specialties__tag animate stagger-5">Orthopaedics</div>
+                    <div class="home-specialties__tag animate stagger-6">Gynaecology</div>
+                    <div class="home-specialties__tag animate stagger-1">Maternity</div>
+                    <div class="home-specialties__tag animate stagger-2">Vascular</div>
+                    <div class="home-specialties__tag animate stagger-3">Diabetes Diagnostics</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SPECIALTIES → CTA ========== -->
+        <div class="section-waves section-waves--dark" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="wave-1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="wave-2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="wave-3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+
+        <!-- ========== FINAL CTA ========== -->
+        <section class="home-cta">
+            <div class="container">
+                <div class="home-cta__inner animate">
+                    <h2>Ready to Elevate<br>Your Standard of Care?</h2>
+                    <p class="accent-text">Superior products. Superior outcomes.</p>
+                    <div class="home-cta__buttons">
+                        <a href="contact.html" class="btn btn--white">Contact Us</a>
+                        <a href="shop.html" class="btn btn--secondary btn--secondary-light">Browse Instruments</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/hero-intro.js"></script>
+    <script src="js/home-marquee.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

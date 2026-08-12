@@ -1,0 +1,666 @@
+{
+    "categories": [
+        "Artery Forceps",
+        "Dissecting Forceps",
+        "Scissors",
+        "Scalpel Handles",
+        "Nippers",
+        "Files",
+        "Curettes",
+        "Podiatry Packs",
+        "Procedure Pack Sets",
+        "Digital Tourniquets",
+        "Suction Tubes",
+        "Other"
+    ],
+    "specialties": [
+        "General Surgery",
+        "Podiatry",
+        "ENT",
+        "Orthopaedics",
+        "Gynaecology",
+        "Maternity",
+        "Wound Care",
+        "Vascular",
+        "Diabetes Diagnostics"
+    ],
+    "products": [
+        {
+            "id": "SS09-0627F",
+            "sku": "SS09-0627 F",
+            "name": "Halstead Mosquito Artery Forcep, Curved",
+            "size": "12.5cm",
+            "category": "Artery Forceps",
+            "specialties": [
+                "General Surgery",
+                "Vascular"
+            ],
+            "description": "Precision-engineered curved mosquito artery forcep for clamping small blood vessels. Single-use, sterile, ready for immediate use.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/artery-forcep-curved.png",
+            "images": [
+                "assets/images/products/artery-forcep-curved.png",
+                "assets/images/products/SS09-0627F/Screen-Shot-2022-08-09-at-10.32.25-AM.png",
+                "assets/images/products/SS09-0627F/Screen-Shot-2022-08-09-at-10.32.37-AM.png",
+                "assets/images/products/SS09-0627F/Screen-Shot-2022-08-09-at-10.33.36-AM.png",
+                "assets/images/products/SS09-0627F/Screen-Shot-2022-08-09-at-10.34.01-AM.png"
+            ]
+        },
+        {
+            "id": "SS09-0625F",
+            "sku": "SS09-0625 F",
+            "name": "Halstead Mosquito Artery Forceps, Straight",
+            "size": "12.5cm",
+            "category": "Artery Forceps",
+            "specialties": [
+                "General Surgery",
+                "Vascular"
+            ],
+            "description": "Straight mosquito artery forceps for precise vessel clamping. Single-use, sterile, pre-wrapped for immediate use.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/artery-forcep-straight.png",
+            "images": [
+                "assets/images/products/artery-forcep-straight.png",
+                "assets/images/products/SS09-0625F/Screen-Shot-2022-08-09-at-10.24.34-AM.png",
+                "assets/images/products/SS09-0625F/Screen-Shot-2022-08-09-at-10.24.43-AM.png",
+                "assets/images/products/SS09-0625F/Screen-Shot-2022-08-09-at-10.25.22-AM.png"
+            ]
+        },
+        {
+            "id": "SS09-0837F",
+            "sku": "SS09-0837 F",
+            "name": "Spencer Wells Artery Forceps Straight",
+            "size": "15cm",
+            "category": "Artery Forceps",
+            "specialties": [
+                "General Surgery",
+                "Vascular"
+            ],
+            "description": "Spencer Wells straight artery forceps, 15cm length for deeper tissue work. Sterile single-use instrument.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/spencer-wells-15.png",
+            "images": [
+                "assets/images/products/spencer-wells-15.png",
+                "assets/images/products/SS09-0837F/Screen-Shot-2022-08-09-at-10.38.40-AM.png",
+                "assets/images/products/SS09-0837F/Screen-Shot-2022-08-09-at-10.38.50-AM.png",
+                "assets/images/products/SS09-0837F/Screen-Shot-2022-08-09-at-10.39.02-AM.png",
+                "assets/images/products/SS09-0837F/Screen-Shot-2022-08-09-at-10.39.12-AM.png",
+                "assets/images/products/SS09-0837F/Screen-Shot-2022-08-09-at-10.39.33-AM.png"
+            ]
+        },
+        {
+            "id": "SS09-0835F",
+            "sku": "SS09-0835 F",
+            "name": "Spencer Wells Artery Forceps Straight",
+            "size": "12.5cm",
+            "category": "Artery Forceps",
+            "specialties": [
+                "General Surgery",
+                "Vascular"
+            ],
+            "description": "Spencer Wells straight artery forceps, compact 12.5cm length. Pre-sterilized single-use design.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/spencer-wells-12.jpg",
+            "images": [
+                "assets/images/products/spencer-wells-12.jpg",
+                "assets/images/products/SS09-0835F/SS09-0837-Spencer-Wells-Forceps-CU-2-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS11-1021F",
+            "sku": "SS11-1021 F",
+            "name": "Adson Dissecting Forceps 1:2 Teeth",
+            "size": "13cm",
+            "category": "Dissecting Forceps",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Adson dissecting forceps with 1:2 teeth for secure tissue grip. Precision-ground tips for accurate handling.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/adson-teeth.png",
+            "images": [
+                "assets/images/products/adson-teeth.png",
+                "assets/images/products/SS11-1021F/Screen-Shot-2022-08-09-at-11.25.34-AM.png",
+                "assets/images/products/SS11-1021F/Screen-Shot-2022-08-09-at-11.25.45-AM.png"
+            ]
+        },
+        {
+            "id": "SS11-1020F",
+            "sku": "SS11-1020 F",
+            "name": "Adson Dissecting Forceps Serrated",
+            "size": "13cm",
+            "category": "Dissecting Forceps",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Adson dissecting forceps with serrated tips for reliable tissue grip without teeth. Single-use sterile instrument.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/adson-serrated.png",
+            "images": [
+                "assets/images/products/adson-serrated.png",
+                "assets/images/products/SS11-1020F/Screen-Shot-2022-08-09-at-11.00.51-AM.png",
+                "assets/images/products/SS11-1020F/Screen-Shot-2022-08-09-at-11.01.00-AM.png",
+                "assets/images/products/SS11-1020F/Screen-Shot-2022-08-09-at-11.01.08-AM.png",
+                "assets/images/products/SS11-1020F/Screen-Shot-2022-08-09-at-11.01.18-AM.png"
+            ]
+        },
+        {
+            "id": "SS07-0282F",
+            "sku": "SS07-0282 F",
+            "name": "Straight Scissors",
+            "size": "11.5cm",
+            "category": "Scissors",
+            "specialties": [
+                "General Surgery"
+            ],
+            "description": "Sharp straight scissors for precise cutting. Compact 11.5cm length ideal for detailed surgical work.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/straight-scissors.jpg",
+            "images": [
+                "assets/images/products/straight-scissors.jpg",
+                "assets/images/products/SS07-0282F/SS07-0282-Iris-Fine-Pt-Scissors-Side-scaled-1-scaled.jpg",
+                "assets/images/products/SS07-0282F/SS07-0282-Iris-Fine-Pt-Scissors-Top-scaled-1-scaled.jpg",
+                "assets/images/products/SS07-0282F/SS07-0282-Iris-Side2-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS07-0291F",
+            "sku": "SS07-0291 F",
+            "name": "Lister Bandage Scissors",
+            "size": "18.5cm",
+            "category": "Scissors",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Lister bandage scissors with angled blade and blunt lower tip for safe bandage removal. 18.5cm length.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/lister-scissors.jpg",
+            "images": [
+                "assets/images/products/lister-scissors.jpg",
+                "assets/images/products/SS07-0291F/ss07-0291-f2.jpeg",
+                "assets/images/products/SS07-0291F/ss07-0291-f1.jpeg",
+                "assets/images/products/SS07-0291F/ss07-0291-f3.jpeg"
+            ]
+        },
+        {
+            "id": "SS07-0284F",
+            "sku": "SS07-0284 F",
+            "name": "Iris Curved Scissors",
+            "size": "",
+            "category": "Scissors",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Fine-point iris scissors with curved blades for delicate tissue dissection and suture removal.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/iris-scissors.jpg",
+            "images": [
+                "assets/images/products/iris-scissors.jpg"
+            ]
+        },
+        {
+            "id": "SS07-0218F",
+            "sku": "SS07-0218 F",
+            "name": "Dressing Scissors B/S Straight",
+            "size": "13cm",
+            "category": "Scissors",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Blunt/sharp dressing scissors for safe dressing and bandage cutting. 13cm straight blade design.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/dressing-scissors.jpg",
+            "images": [
+                "assets/images/products/dressing-scissors.jpg",
+                "assets/images/products/SS07-0218F/SS07-0218-13-cm-Dressing-Scissors-Side-2-scaled-1-scaled.jpg",
+                "assets/images/products/SS07-0218F/SS07-0218-13-cm-Dressing-Scissors-Top-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS04-0110F",
+            "sku": "SS04-0110 F",
+            "name": "Scalpel Handle Badger Fine",
+            "size": "",
+            "category": "Scalpel Handles",
+            "specialties": [
+                "General Surgery",
+                "Podiatry"
+            ],
+            "description": "Badger fine scalpel handle for precision cutting tasks. Ergonomic grip design for enhanced control.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/scalpel-badger.jpg",
+            "images": [
+                "assets/images/products/scalpel-badger.jpg",
+                "assets/images/products/SS04-0110F/SS04-0110-Badger-Handle-Top-scaled-1-scaled.jpg",
+                "assets/images/products/SS04-0110F/SS04-0110-Badger-Handle-Side-2-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS04-0100F",
+            "sku": "SS04-0100 F",
+            "name": "Scalpel Handle No.3",
+            "size": "",
+            "category": "Scalpel Handles",
+            "specialties": [
+                "General Surgery",
+                "Podiatry"
+            ],
+            "description": "Standard No.3 scalpel handle compatible with standard surgical blades. Single-use sterile design.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/scalpel-no3.jpg",
+            "images": [
+                "assets/images/products/scalpel-no3.jpg",
+                "assets/images/products/SS04-0100F/SS04-0100-Scalpel-Handle-3-Top-scaled-1-scaled.jpg",
+                "assets/images/products/SS04-0100F/SS04-0100-Scalpel-Handle-3-Side-2-1-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS08-0539F",
+            "sku": "SS08-0539 F",
+            "name": "Thwaites Nail Nipper",
+            "size": "14cm",
+            "category": "Nippers",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Thwaites nail nipper for thick or ingrown toenails. Strong jaw action with precision cutting edge.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/thwaites-nipper.png",
+            "images": [
+                "assets/images/products/thwaites-nipper.png",
+                "assets/images/products/SS08-0539F/Screen-Shot-2022-08-09-at-10.09.10-AM.png",
+                "assets/images/products/SS08-0539F/Screen-Shot-2022-08-09-at-10.08.21-AM.png",
+                "assets/images/products/SS08-0539F/Thwaites-Action-shot-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS08-0500F",
+            "sku": "SS08-0500 F",
+            "name": "Nipper General Curved",
+            "size": "13cm",
+            "category": "Nippers",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "General curved nipper for routine nail care. Ergonomic design with sharp curved cutting edge.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/nipper-curved.jpg",
+            "images": [
+                "assets/images/products/nipper-curved.jpg",
+                "assets/images/products/SS08-0500F/SS08-0500-EMAIL-CAMPIGN-PIC-1.jpeg",
+                "assets/images/products/SS08-0500F/SS08-0500-Cvd-General-Nipper-Side-2-scaled.jpg",
+                "assets/images/products/SS08-0500F/SS08-0500-Cvd-General-Nipper-Top-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SS08-0537F",
+            "sku": "SS08-0537 F",
+            "name": "Nipper Ingrown Nail",
+            "size": "14cm",
+            "category": "Nippers",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Specialized ingrown nail nipper with narrow jaw for precise ingrown nail removal.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/nipper-ingrown.jpg",
+            "images": [
+                "assets/images/products/nipper-ingrown.jpg",
+                "assets/images/products/SS08-0537F/SS08-0537-F2.jpeg"
+            ]
+        },
+        {
+            "id": "SS08-0553F",
+            "sku": "SS08-0553 F",
+            "name": "Blacks File SE Coarse",
+            "size": "14cm",
+            "category": "Files",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Blacks file with single-end coarse surface for effective nail and callus reduction.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/blacks-file.png",
+            "images": [
+                "assets/images/products/blacks-file.png",
+                "assets/images/products/SS08-0553F/Screen-Shot-2022-08-09-at-10.15.29-AM.png",
+                "assets/images/products/SS08-0553F/Screen-Shot-2022-08-09-at-10.15.39-AM.png"
+            ]
+        },
+        {
+            "id": "SS08-0548F",
+            "sku": "SS08-0548 F",
+            "name": "Elevator Nail Locke",
+            "size": "14cm",
+            "category": "Other",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Locke nail elevator for lifting and separating nail plate from nail bed. Essential podiatry instrument.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/nail-elevator.png",
+            "images": [
+                "assets/images/products/nail-elevator.png",
+                "assets/images/products/SS08-0548F/Screen-Shot-2022-08-09-at-3.01.55-PM.png",
+                "assets/images/products/SS08-0548F/Screen-Shot-2022-08-09-at-3.02.03-PM.png",
+                "assets/images/products/SS08-0548F/Screen-Shot-2022-08-09-at-3.02.16-PM.png"
+            ]
+        },
+        {
+            "id": "SS18-1716F",
+            "sku": "SS18-1716 F",
+            "name": "Needle Holder Kilner",
+            "size": "13.5cm",
+            "category": "Other",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Kilner needle holder for secure needle grip during suturing. Precision jaw design for reliable handling.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/needle-holder.jpg",
+            "images": [
+                "assets/images/products/needle-holder.jpg"
+            ]
+        },
+        {
+            "id": "SS62-6401F",
+            "sku": "SS62-6401 F",
+            "name": "Curette Malleable D/E 2mm/3mm Scoops",
+            "size": "180mm",
+            "category": "Curettes",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Malleable double-ended curette with 2mm and 3mm scoops. Flexible shaft for access to difficult areas.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/curette-malleable.jpg",
+            "images": [
+                "assets/images/products/curette-malleable.jpg",
+                "assets/images/products/SS62-6401F/SS62-6401-F-CU.jpg",
+                "assets/images/products/SS62-6401F/SS62-6401-F-CU2.jpg"
+            ]
+        },
+        {
+            "id": "SS62-4300F",
+            "sku": "SS62-4300 F",
+            "name": "Micro Curette D/E",
+            "size": "",
+            "category": "Curettes",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Micro double-ended curette for fine tissue debridement and sample collection.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/micro-curette.png",
+            "images": [
+                "assets/images/products/micro-curette.png",
+                "assets/images/products/SS62-4300F/Screen-Shot-2022-08-09-at-2.19.06-PM.png",
+                "assets/images/products/SS62-4300F/Screen-Shot-2022-08-09-at-2.19.25-PM.png"
+            ]
+        },
+        {
+            "id": "SS62-4349F",
+            "sku": "SS62-4349 F",
+            "name": "Curette D/E 2mm/3mm Scoops",
+            "size": "17cm",
+            "category": "Curettes",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Standard double-ended curette with 2mm and 3mm scoops. 17cm length for general surgical use.",
+            "boxQty": 10,
+            "federal": true,
+            "image": "assets/images/products/curette-de.jpg",
+            "images": [
+                "assets/images/products/curette-de.jpg",
+                "assets/images/products/SS62-4349F/SS62-4349-CURETTE-DE-17CM-2MM-3MM-SCOOPS-Side-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "SUCTION-MAGILL",
+            "sku": "Susol Suction Tube",
+            "name": "Suction Tube Magill 9fg",
+            "size": "9fg",
+            "category": "Suction Tubes",
+            "specialties": [
+                "ENT"
+            ],
+            "description": "Magill suction tube with rounded tip for atraumatic suction. High-grade medical steel construction.",
+            "boxQty": 10,
+            "federal": false,
+            "image": "assets/images/products/suction-tube.jpg",
+            "images": [
+                "assets/images/products/suction-tube.jpg"
+            ]
+        },
+        {
+            "id": "BSDP-04F",
+            "sku": "BSDP-04 F",
+            "name": "Basic Care Podiatry Pack",
+            "size": "",
+            "category": "Podiatry Packs",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Basic podiatry care pack containing: Nipper 13cm curved and Foot Dresser double-sided medium/fine. Pre-sterilized and individually wrapped.",
+            "boxQty": 10,
+            "federal": true,
+            "isPack": true,
+            "packContents": [
+                "Nipper 13cm Curved",
+                "Foot Dresser Double Sided Medium/Fine"
+            ],
+            "image": "assets/images/products/basic-care-pack.jpg",
+            "images": [
+                "assets/images/products/basic-care-pack.jpg",
+                "assets/images/products/BSDP-04F/BSDP-04-Basic-Care-Top-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "BSDP-03F",
+            "sku": "BSDP-03 F",
+            "name": "PNA Procedure Pack",
+            "size": "",
+            "category": "Podiatry Packs",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Partial Nail Avulsion procedure pack containing: Thwaites Nipper 14cm, Locke Elevator, and 2 Mosquito Artery Forceps. Complete PNA kit.",
+            "boxQty": 10,
+            "federal": true,
+            "isPack": true,
+            "packContents": [
+                "Thwaites Nipper 14cm",
+                "Locke Elevator",
+                "Mosquito Artery Forceps x2"
+            ],
+            "image": "assets/images/products/pna-pack.jpg",
+            "images": [
+                "assets/images/products/pna-pack.jpg",
+                "assets/images/products/BSDP-03F/BSDP-03-F-Cut-Down-PNA-Top-scaled-1-scaled.jpg"
+            ]
+        },
+        {
+            "id": "BSDP-03-02F",
+            "sku": "BSDP-03-02 F",
+            "name": "PNA Procedure Pack (8 Instruments)",
+            "size": "",
+            "category": "Podiatry Packs",
+            "specialties": [
+                "Podiatry"
+            ],
+            "description": "Extended PNA procedure pack with 8 sterile instruments for comprehensive partial nail avulsion procedures.",
+            "boxQty": 10,
+            "federal": true,
+            "isPack": true,
+            "packContents": [
+                "8 sterile instruments for PNA procedures"
+            ],
+            "image": "assets/images/products/pna-pack-8.png",
+            "images": [
+                "assets/images/products/pna-pack-8.png",
+                "assets/images/products/BSDP-03-02F/Screen-Shot-2022-08-09-at-3.31.08-PM.png"
+            ]
+        },
+        {
+            "id": "SSP-132F",
+            "sku": "SSP-132 F",
+            "name": "Ulcer Debridement Pack Set",
+            "size": "",
+            "category": "Procedure Pack Sets",
+            "specialties": [
+                "Wound Care",
+                "Diabetes Diagnostics",
+                "Vascular"
+            ],
+            "description": "Complete ulcer debridement pack with all instruments needed for wound debridement procedures. Sterile, single-use.",
+            "boxQty": 10,
+            "federal": true,
+            "isPack": true,
+            "image": "assets/images/products/debridement-pack.png",
+            "images": [
+                "assets/images/products/debridement-pack.png",
+                "assets/images/products/SSP-132F/Screen-Shot-2022-08-09-at-3.25.08-PM.png",
+                "assets/images/products/SSP-132F/Screen-Shot-2022-08-09-at-3.25.28-PM.png",
+                "assets/images/products/SSP-132F/Screen-Shot-2022-08-09-at-3.25.39-PM.png"
+            ]
+        },
+        {
+            "id": "SSP-024F",
+            "sku": "SSP-024 F",
+            "name": "Suture Pack Set",
+            "size": "",
+            "category": "Procedure Pack Sets",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Suture pack containing Iris Scissors and Adson Forceps. Essential instruments for suturing procedures.",
+            "boxQty": 10,
+            "federal": true,
+            "isPack": true,
+            "packContents": [
+                "Iris Scissors",
+                "Adson Forceps"
+            ],
+            "image": "assets/images/products/suture-pack.jpg",
+            "images": [
+                "assets/images/products/suture-pack.jpg"
+            ]
+        },
+        {
+            "id": "SSP-021F",
+            "sku": "SSP-021 F",
+            "name": "Standard Suture Pack",
+            "size": "",
+            "category": "Procedure Pack Sets",
+            "specialties": [
+                "General Surgery",
+                "Wound Care"
+            ],
+            "description": "Comprehensive suture pack with Iris Fine Point Scissors, Kilner Needle Holder, Treves Dissecting Forceps, and T.O.E Dissecting Forceps.",
+            "boxQty": 10,
+            "federal": true,
+            "isPack": true,
+            "packContents": [
+                "Iris Fine Point Scissors",
+                "Kilner Needle Holder",
+                "Treves Dissecting Forceps",
+                "T.O.E Dissecting Forceps"
+            ],
+            "image": "assets/images/products/standard-suture-pack.png",
+            "images": [
+                "assets/images/products/standard-suture-pack.png"
+            ]
+        },
+        {
+            "id": "S-TQS",
+            "sku": "S-TQS",
+            "name": "Digital Tourniquet Small",
+            "size": "Small",
+            "category": "Digital Tourniquets",
+            "specialties": [
+                "Podiatry",
+                "General Surgery"
+            ],
+            "description": "Small digital tourniquet (orange) for controlled hemostasis during digit procedures.",
+            "boxQty": 50,
+            "federal": false,
+            "color": "Orange",
+            "image": "assets/images/products/tourniquet-small.jpg",
+            "images": [
+                "assets/images/products/tourniquet-small.jpg",
+                "assets/images/products/S-TQS/95.jpg"
+            ]
+        },
+        {
+            "id": "S-TQM",
+            "sku": "S-TQM",
+            "name": "Digital Tourniquet Medium",
+            "size": "Medium",
+            "category": "Digital Tourniquets",
+            "specialties": [
+                "Podiatry",
+                "General Surgery"
+            ],
+            "description": "Medium digital tourniquet (green) for controlled hemostasis during digit procedures.",
+            "boxQty": 50,
+            "federal": false,
+            "color": "Green",
+            "image": "assets/images/products/tourniquet-medium.jpg",
+            "images": [
+                "assets/images/products/tourniquet-medium.jpg",
+                "assets/images/products/S-TQM/97.jpg"
+            ]
+        },
+        {
+            "id": "S-TQL",
+            "sku": "S-TQL",
+            "name": "Digital Tourniquet Large",
+            "size": "Large",
+            "category": "Digital Tourniquets",
+            "specialties": [
+                "Podiatry",
+                "General Surgery"
+            ],
+            "description": "Large digital tourniquet (blue) for controlled hemostasis during digit procedures.",
+            "boxQty": 50,
+            "federal": false,
+            "color": "Blue",
+            "image": "assets/images/products/tourniquet-large.jpg",
+            "images": [
+                "assets/images/products/tourniquet-large.jpg",
+                "assets/images/products/S-TQL/34-1.jpg"
+            ]
+        }
+    ]
+}

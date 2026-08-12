@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(find 'c:/Users/ajs59/Desktop/Instruments Website' -name screenshot* -o -name Screenshot* -o -name *.png)",
+      "WebFetch(domain:baileyinstruments.co.uk)",
+      "Bash(curl -s https://baileyinstruments.co.uk/products/halstead-curved-mosquito-artery-forceps.json)",
+      "Bash(python3 -c \":*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ajs59\\Desktop\\Instruments Website",
+      "c:\\Users\\ajs59\\Desktop\\Instruments Website\\.screenshots"
+    ]
+  }
+}

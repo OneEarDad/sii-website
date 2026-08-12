@@ -1,0 +1,450 @@
+/* ============================================
+   SII Medical — Federal & Government Page Styles
+   ============================================ */
+
+:root {
+    --easing-wqf: cubic-bezier(.62, .16, .13, 1.01);
+}
+
+/* --- Page Header Override --- */
+.fed-header {
+    text-align: left;
+    padding: clamp(4rem, 10vw, 7rem) 0;
+    background: linear-gradient(135deg, #1a1817 0%, var(--charcoal) 50%, var(--deep-teal) 100%);
+}
+
+.fed-header h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: var(--space-md);
+}
+
+.fed-header p {
+    max-width: 560px;
+    text-align: left;
+    margin: 0 0 var(--space-xl);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.fed-header__label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin-bottom: var(--space-md);
+}
+
+/* Contract badges in header */
+.fed-header__badges {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.fed-header__badge {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: var(--space-md) var(--space-lg);
+    backdrop-filter: blur(4px);
+}
+
+.fed-header__badge strong {
+    display: block;
+    color: var(--teal-light);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+}
+
+.fed-header__badge span {
+    font-size: 0.72rem;
+    color: rgba(198, 195, 194, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 599px) {
+    .fed-header__badges {
+        flex-direction: column;
+    }
+    .fed-header__badge {
+        padding: var(--space-sm) var(--space-md);
+    }
+}
+
+/* =============================================
+   WHY FEDERAL SECTION
+   ============================================= */
+.fed-why {
+    background: var(--white);
+    padding: clamp(5rem, 12vw, 9rem) 0;
+}
+
+.fed-why__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+@media (min-width: 900px) {
+    .fed-why__inner {
+        grid-template-columns: 1.3fr 0.7fr;
+    }
+}
+
+.fed-why__content h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-lg);
+}
+
+.fed-why__content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--steel-gray);
+}
+
+.fed-why__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+@media (max-width: 599px) {
+    .fed-why__stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fed-why__stat {
+    padding: var(--space-lg);
+    background: var(--off-white);
+    border-radius: 8px;
+    border-left: 3px solid var(--teal);
+    transition: all 0.4s var(--easing-wqf);
+}
+
+.fed-why__stat:hover {
+    transform: translateX(4px);
+    border-left-width: 5px;
+}
+
+.fed-why__stat strong {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-xs);
+}
+
+.fed-why__stat span {
+    font-size: 0.85rem;
+    color: var(--steel-gray);
+    line-height: 1.4;
+}
+
+/* =============================================
+   COMPLIANCE SECTION
+   ============================================= */
+.fed-compliance {
+    background: #1a1817;
+    padding: clamp(5rem, 12vw, 9rem) 0;
+}
+
+.fed-compliance__header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.fed-compliance__header .section__label {
+    color: var(--teal);
+}
+
+.fed-compliance__header h2 {
+    color: var(--white);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: -0.02em;
+}
+
+.fed-compliance__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 600px) {
+    .fed-compliance__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .fed-compliance__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.fed-compliance__card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: var(--space-xl) var(--space-lg);
+    transition: all 0.4s var(--easing-wqf);
+}
+
+.fed-compliance__card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(106, 161, 161, 0.2);
+    transform: translateY(-4px);
+}
+
+.fed-compliance__card-icon {
+    color: var(--teal);
+    margin-bottom: var(--space-md);
+    transition: transform 0.4s var(--easing-wqf);
+}
+
+.fed-compliance__card:hover .fed-compliance__card-icon {
+    transform: translateY(-3px);
+}
+
+.fed-compliance__card h3 {
+    color: var(--white);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+}
+
+.fed-compliance__card p {
+    color: rgba(198, 195, 194, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* =============================================
+   FACILITIES SECTION
+   ============================================= */
+.fed-facilities {
+    background: var(--white);
+    padding: clamp(5rem, 12vw, 9rem) 0;
+}
+
+.fed-facilities__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+@media (min-width: 900px) {
+    .fed-facilities__inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.fed-facilities__content h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+}
+
+.fed-facilities__content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--steel-gray);
+}
+
+.fed-facilities__types {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.fed-facilities__type {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: all 0.4s var(--easing-wqf);
+}
+
+.fed-facilities__type:hover {
+    border-color: var(--teal-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(48, 45, 45, 0.08);
+}
+
+.fed-facilities__type-icon {
+    flex-shrink: 0;
+    color: var(--teal);
+    padding-top: 2px;
+    transition: transform 0.4s var(--easing-wqf);
+}
+
+.fed-facilities__type:hover .fed-facilities__type-icon {
+    transform: translateY(-2px);
+}
+
+.fed-facilities__type h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.fed-facilities__type p {
+    font-size: 0.9rem;
+    color: var(--steel-gray);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* =============================================
+   HOW TO ORDER SECTION
+   ============================================= */
+.fed-order {
+    background: var(--off-white);
+    padding: clamp(5rem, 12vw, 9rem) 0;
+}
+
+.fed-order__header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.fed-order__header h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+}
+
+.fed-order__header p {
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+}
+
+.fed-order__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .fed-order__steps {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.fed-order__step {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+    transition: all 0.4s var(--easing-wqf);
+    position: relative;
+}
+
+.fed-order__step:hover {
+    transform: translateY(-6px);
+    border-color: var(--teal-light);
+    box-shadow: 0 12px 32px rgba(48, 45, 45, 0.08);
+}
+
+.fed-order__step-num {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(106, 161, 161, 0.5);
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-lg);
+}
+
+.fed-order__step h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+.fed-order__step p {
+    font-size: 0.92rem;
+    color: var(--steel-gray);
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* =============================================
+   CTA SECTION
+   ============================================= */
+.fed-cta {
+    background: linear-gradient(135deg, var(--deep-teal) 0%, var(--charcoal) 100%);
+    padding: clamp(5rem, 12vw, 8rem) 0;
+}
+
+.fed-cta__inner {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.fed-cta__inner h2 {
+    color: var(--white);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+}
+
+.fed-cta__inner .accent-text {
+    color: var(--teal-light);
+    font-size: 1.15rem;
+    margin-bottom: var(--space-xl);
+    display: block;
+}
+
+.fed-cta__buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
+}
+
+.fed-cta__contact {
+    display: flex;
+    gap: var(--space-xl);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fed-cta__contact span {
+    color: var(--light-silver);
+    font-size: 0.92rem;
+}
+
+/* =============================================
+   SCROLL ANIMATION OVERRIDES
+   ============================================= */
+.fed-why .animate,
+.fed-compliance .animate,
+.fed-facilities .animate,
+.fed-order .animate,
+.fed-cta .animate {
+    transition-timing-function: var(--easing-wqf);
+    transition-duration: 0.8s;
+}
