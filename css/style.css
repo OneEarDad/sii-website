@@ -290,52 +290,41 @@ p {
     border-color: var(--teal-light);
 }
 
-/* --- Section Wave Dividers (multi-curve) --- */
+/* --- Section Transitions (seamless gradient blend) ---
+   Each divider overlaps the bottom of the previous section (negative margin)
+   and paints the NEXT section's solid color through a vertical alpha mask:
+   transparent at the top (so the previous section shows), fully opaque at the
+   bottom (matching the next section). The result is a true prev -> next colour
+   melt with no banding, and it works for any pair of adjacent sections without
+   knowing the previous colour. The old inline <svg> waves are hidden in place. */
 .section-waves {
     position: relative;
     z-index: 5;
-    margin-top: -80px;
+    margin-top: -90px;
+    height: 90px;
     pointer-events: none;
     line-height: 0;
     overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 100%);
 }
 
-.section-waves svg {
-    display: block;
-    width: 100%;
-    height: 80px;
-}
+.section-waves svg { display: none; }
 
-/* Inverted (top of section, curves hang down) */
+/* Inverted (fades upward — kept for safety; currently unused) */
 .section-waves--flip {
     margin-top: 0;
-    margin-bottom: -80px;
+    margin-bottom: -90px;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 100%);
+            mask-image: linear-gradient(to top, transparent 0%, #000 100%);
 }
 
-.section-waves--flip svg {
-    transform: scaleY(-1);
-}
-
-/* Color variants — fill matches the NEXT section's background */
-.section-waves--white svg .wave-1 { fill: var(--white); opacity: 0.3; }
-.section-waves--white svg .wave-2 { fill: var(--white); opacity: 0.6; }
-.section-waves--white svg .wave-3 { fill: var(--white); opacity: 1; }
-
-.section-waves--off-white svg .wave-1 { fill: var(--off-white); opacity: 0.3; }
-.section-waves--off-white svg .wave-2 { fill: var(--off-white); opacity: 0.6; }
-.section-waves--off-white svg .wave-3 { fill: var(--off-white); opacity: 1; }
-
-.section-waves--dark svg .wave-1 { fill: #1a1817; opacity: 0.3; }
-.section-waves--dark svg .wave-2 { fill: #1a1817; opacity: 0.6; }
-.section-waves--dark svg .wave-3 { fill: #1a1817; opacity: 1; }
-
-.section-waves--teal svg .wave-1 { fill: var(--teal); opacity: 0.3; }
-.section-waves--teal svg .wave-2 { fill: var(--teal); opacity: 0.6; }
-.section-waves--teal svg .wave-3 { fill: var(--teal); opacity: 1; }
-
-.section-waves--charcoal svg .wave-1 { fill: var(--charcoal); opacity: 0.3; }
-.section-waves--charcoal svg .wave-2 { fill: var(--charcoal); opacity: 0.6; }
-.section-waves--charcoal svg .wave-3 { fill: var(--charcoal); opacity: 1; }
+/* Colour variants — the solid fill matches the NEXT section's background */
+.section-waves--white { background: var(--white); }
+.section-waves--off-white { background: var(--off-white); }
+.section-waves--dark { background: #1a1817; }
+.section-waves--teal { background: var(--teal); }
+.section-waves--charcoal { background: var(--charcoal); }
 
 /* Legacy single-curve support */
 .section-curve {

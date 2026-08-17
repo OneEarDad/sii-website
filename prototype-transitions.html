@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype — Section Transitions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --dark:#1a1817; --charcoal:#302d2d; --off-white:#f5f3f1; --white:#fff;
+            --teal:#6aa1a1;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:#0e1414;color:#d9e4e4}
+        .head{padding:2.5rem clamp(1rem,4vw,3rem) 1.5rem;border-bottom:1px solid rgba(106,161,161,.2)}
+        .head .eyebrow{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+        .head h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:700}
+        .head p{color:#7d8e8e;margin-top:.5rem;max-width:64ch;font-size:.95rem;line-height:1.6}
+
+        .demo{max-width:1100px;margin:2.5rem auto;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+        .demo__tag{display:flex;gap:.8rem;align-items:baseline;padding:0 clamp(1rem,4vw,3rem);max-width:1100px;margin:2.5rem auto -1rem}
+        .demo__tag b{font-size:1.05rem;color:#e8f0f0}
+        .demo__tag span{color:#7d8e8e;font-size:.88rem}
+        .demo__tag i{font-style:normal;font-family:monospace;color:var(--teal);font-size:.8rem}
+
+        /* the two blocks every demo shares */
+        .top{background:var(--dark);height:150px;display:flex;align-items:center;justify-content:center;position:relative}
+        .top::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px;opacity:.35;mix-blend-mode:overlay;pointer-events:none}
+        .bot{background:var(--off-white);height:150px;display:flex;align-items:center;justify-content:center;color:var(--charcoal);font-weight:600}
+        .top b{color:#fff;font-weight:700;position:relative;z-index:1}
+
+        /* ---- A: current 3-layer wave ---- */
+        .wavesA{position:relative;margin-top:-80px;z-index:5;line-height:0;overflow:hidden}
+        .wavesA svg{display:block;width:100%;height:80px}
+        .wavesA .w1{fill:var(--off-white);opacity:.3}
+        .wavesA .w2{fill:var(--off-white);opacity:.6}
+        .wavesA .w3{fill:var(--off-white);opacity:1}
+
+        /* ---- B: single smooth curve ---- */
+        .waveB{position:relative;margin-top:-70px;z-index:5;line-height:0}
+        .waveB svg{display:block;width:100%;height:70px}
+        .waveB path{fill:var(--off-white)}
+
+        /* ---- C: seamless gradient blend (no curve) ---- */
+        .blend{height:120px;background:linear-gradient(to bottom,var(--dark) 0%,#5a504c 45%,#cdc7c2 72%,var(--off-white) 100%)}
+
+        /* ---- D: soft feathered edge (tiny blur band) ---- */
+        .feather{height:1px;background:var(--off-white);box-shadow:0 0 44px 30px var(--off-white)}
+        .featherwrap{background:var(--off-white)}
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="eyebrow">Prototype · Section Transitions</div>
+        <h1>Four ways to smooth the section breaks</h1>
+        <p>Every demo shows the same dark → off-white transition your pages use. A is what's live now (three stacked curves = the multi-toned lines you don't like). B–D are smoother. Pick one and I'll roll it out to every section break site-wide.</p>
+    </div>
+
+    <!-- A -->
+    <div class="demo__tag"><b>A · Current</b><span>three layered curves at 30% / 60% / 100% opacity</span><i>live now</i></div>
+    <div class="demo">
+        <div class="top"><b>DARK SECTION</b></div>
+        <div class="wavesA">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path class="w1" d="M0,80 C320,20 720,60 1440,10 L1440,80 Z"/>
+                <path class="w2" d="M0,80 C480,35 960,15 1440,45 L1440,80 Z"/>
+                <path class="w3" d="M0,80 C400,55 1000,40 1440,65 L1440,80 Z"/>
+            </svg>
+        </div>
+        <div class="bot">LIGHT SECTION</div>
+    </div>
+
+    <!-- B -->
+    <div class="demo__tag"><b>B · Single smooth curve</b><span>one clean wave, keeps some character</span></div>
+    <div class="demo">
+        <div class="top"><b>DARK SECTION</b></div>
+        <div class="waveB">
+            <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+                <path d="M0,70 C480,10 960,10 1440,55 L1440,70 Z"/>
+            </svg>
+        </div>
+        <div class="bot">LIGHT SECTION</div>
+    </div>
+
+    <!-- C -->
+    <div class="demo__tag"><b>C · Seamless gradient blend</b><span>colors melt into each other, no curve at all</span></div>
+    <div class="demo">
+        <div class="top"><b>DARK SECTION</b></div>
+        <div class="blend"></div>
+        <div class="bot">LIGHT SECTION</div>
+    </div>
+
+    <!-- D -->
+    <div class="demo__tag"><b>D · Soft feathered edge</b><span>a barely-there glow, almost a clean cut</span></div>
+    <div class="demo">
+        <div class="top"><b>DARK SECTION</b></div>
+        <div class="featherwrap"><div class="feather"></div></div>
+        <div class="bot">LIGHT SECTION</div>
+    </div>
+
+    <div style="text-align:center;color:#5f6f6f;font-size:.8rem;padding:2rem 1rem 3.5rem">SII · transition comparison</div>
+</body>
+</html>
