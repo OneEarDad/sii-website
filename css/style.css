@@ -300,8 +300,8 @@ p {
 .section-waves {
     position: relative;
     z-index: 5;
-    margin-top: -90px;
-    height: 90px;
+    margin-top: -44px;
+    height: 44px;
     pointer-events: none;
     line-height: 0;
     overflow: hidden;
@@ -314,7 +314,7 @@ p {
 /* Inverted (fades upward — kept for safety; currently unused) */
 .section-waves--flip {
     margin-top: 0;
-    margin-bottom: -90px;
+    margin-bottom: -44px;
     -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 100%);
             mask-image: linear-gradient(to top, transparent 0%, #000 100%);
 }
