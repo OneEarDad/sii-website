@@ -74,67 +74,53 @@
     color: var(--steel-gray);
 }
 
+/* Editorial problem-stat ledger — gradient figures, hairline dividers, no boxes */
 .wsu-problem__stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-}
-
-@media (max-width: 599px) {
-    .wsu-problem__stats {
-        grid-template-columns: 1fr;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .wsu-problem__stat {
-    padding: var(--space-lg);
-    background: var(--off-white);
-    border-radius: 8px;
-    border-left: 3px solid var(--steel-gray);
-    transition: all 0.4s var(--easing-wqf);
+    padding: var(--space-lg) 0;
+    border-top: 1px solid rgba(48, 45, 45, 0.1);
 }
 
-.wsu-problem__stat:hover {
-    transform: translateX(4px);
-    border-left-width: 5px;
-}
-
-.wsu-problem__stat--highlight {
-    background: var(--charcoal);
-    border-left-color: var(--teal);
-    grid-column: 1 / -1;
-}
-
-.wsu-problem__stat--highlight strong {
-    color: var(--teal);
-    font-size: 2.4rem;
-}
-
-.wsu-problem__stat--highlight span {
-    color: var(--light-silver);
-}
-
-.wsu-problem__stat--highlight cite {
-    color: var(--cool-gray);
+.wsu-problem__stat:first-child {
+    border-top: none;
+    padding-top: 0;
 }
 
 .wsu-problem__stat strong {
     display: block;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--charcoal);
-    letter-spacing: -0.02em;
-    margin-bottom: var(--space-xs);
+    font-size: clamp(2.6rem, 5.5vw, 3.4rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+    width: max-content;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(150deg, var(--deep-teal) 0%, var(--teal) 55%, #8fc3c3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .wsu-problem__stat span {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--steel-gray);
-    line-height: 1.4;
+    line-height: 1.5;
+    max-width: 34ch;
 }
 
-.wsu-problem__stat cite {
+/* Lead stat reads larger and carries the citation */
+.wsu-problem__stat--highlight strong {
+    font-size: clamp(3rem, 7vw, 4.2rem);
+}
+
+.wsu-problem__stat--highlight cite {
     display: block;
     font-size: 0.72rem;
     font-style: normal;
