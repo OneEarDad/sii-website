@@ -610,18 +610,24 @@ p {
     right: 0;
     bottom: 0;
     top: 0;
-    background: rgba(11, 16, 18, 0.95);
+    background: rgba(11, 16, 18, 0.97);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: var(--space-xl);
+    /* Top-align and scroll: centering clipped the first links (Home/About…)
+       above the viewport whenever the list was taller than the screen, and
+       there was no way to scroll up to them. Clear the fixed nav bar, then let
+       the menu scroll. */
+    justify-content: flex-start;
+    padding: calc(56px + var(--space-lg)) var(--space-xl) var(--space-2xl);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 999;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .nav__mobile.open {

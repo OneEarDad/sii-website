@@ -36,24 +36,31 @@
                 <span></span>
             </button>
         </div>
-        <div class="nav__mobile" id="mobileMenu">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="why-single-use.html">Why Single-Use</a>
-            <a href="shop.html">Shop</a>
-            <a href="federal.html">Federal</a>
-            <div class="nav__mobile-dropdown">
-                <button class="nav__mobile-dropdown-toggle">Resources <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-                <div class="nav__mobile-dropdown-menu">
-                    <a href="videos.html">Videos</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="faq.html">FAQ</a>
-                </div>
-            </div>
-            <a href="contact.html">Contact</a>
-            <a href="contact.html" class="btn btn--primary">Request a Quote</a>
-        </div>
     </nav>`;
+
+    /* --- Mobile Menu HTML ---
+       Kept OUTSIDE <nav> and appended to <body>. The nav has a backdrop-filter,
+       which makes it the containing block for any position:fixed descendant —
+       that was clipping this full-screen overlay to the height of the bar. As a
+       body child it is fixed to the viewport and covers the whole screen. */
+    const mobileMenuHTML = `
+    <div class="nav__mobile" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="why-single-use.html">Why Single-Use</a>
+        <a href="shop.html">Shop</a>
+        <a href="federal.html">Federal</a>
+        <div class="nav__mobile-dropdown">
+            <button class="nav__mobile-dropdown-toggle">Resources <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav__mobile-dropdown-menu">
+                <a href="videos.html">Videos</a>
+                <a href="blog.html">Blog</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+        </div>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn--primary">Request a Quote</a>
+    </div>`;
 
     /* --- Footer HTML --- */
     const footerHTML = `
@@ -115,6 +122,10 @@
         } else {
             document.body.insertAdjacentHTML('afterbegin', navHTML);
         }
+
+        // Mobile menu — appended to <body> (not inside <nav>) so the nav's
+        // backdrop-filter doesn't trap this fixed overlay to the bar's height.
+        document.body.insertAdjacentHTML('beforeend', mobileMenuHTML);
 
         // Footer
         const footerTarget = document.getElementById('footer-placeholder');
