@@ -12,7 +12,7 @@
 
     /* --- Read per-hero scale (data-scale attribute, default 1.15) --- */
     function getScale(hero) {
-        return parseFloat(hero.dataset.scale) || 1.15;
+        return parseFloat(hero.dataset.scale) || 1.05;
     }
 
     /* --- Scroll Parallax --- */

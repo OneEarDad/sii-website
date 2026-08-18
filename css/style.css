@@ -839,11 +839,14 @@ p {
 
 .hero-img__photo {
     position: absolute;
-    inset: -15% 0;
+    inset: -11% 0;
     width: 100%;
-    height: 130%;
+    height: 122%;
     object-fit: cover;
-    transform: translate3d(0, 0, 0) scale(1.15);
+    /* Minimal zoom: keeps the photo close to native resolution (sharp) and
+       shows more of the instrument. Just enough scale/bleed to cover the
+       parallax shift without exposing edges. */
+    transform: translate3d(0, 0, 0) scale(1.05);
     /* Gentle grade so the photo reads crisp and editorial, not flat/hazy */
     filter: contrast(1.07) saturate(0.9) brightness(0.97);
     will-change: transform;
@@ -875,7 +878,7 @@ p {
 /* Reveal animation */
 .hero-img--loading .hero-img__photo {
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale(1.25);
+    transform: translate3d(0, 0, 0) scale(1.12);
 }
 
 .hero-img--loaded .hero-img__photo {

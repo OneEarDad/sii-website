@@ -20,7 +20,7 @@ body:has(#shop-container) .page-header {
    too — see shop.html. The CSS scale is the at-rest baseline. */
 body:has(#shop-container) .hero-img__photo {
     object-position: center 50%;
-    transform: translate3d(0, 0, 0) scale(1.18);
+    transform: translate3d(0, 0, 0) scale(1.05);
 }
 
 body:has(#shop-container) .hero-img__overlay {
