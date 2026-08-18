@@ -153,6 +153,63 @@
         thumb.addEventListener('pointerup', endDrag);
         thumb.addEventListener('pointercancel', endDrag);
         bar.addEventListener('pointerdown', (e) => { if (e.target === bar) setScrollFromX(e.clientX, false); });
+
+        // --- Smooth mouse wheel: ease a vertical wheel into horizontal scroll ---
+        let targetX = null, wheelRaf = null;
+        const wheelStep = () => {
+            const diff = targetX - track.scrollLeft;
+            if (Math.abs(diff) < 0.5) { track.scrollLeft = targetX; targetX = null; wheelRaf = null; return; }
+            track.scrollLeft += diff * 0.22;
+            wheelRaf = requestAnimationFrame(wheelStep);
+        };
+        track.addEventListener('wheel', (e) => {
+            const max = track.scrollWidth - track.clientWidth;
+            if (max <= 1) return;
+            const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+            if (!delta) return;
+            // let the page scroll normally once the row is at either edge
+            if ((delta < 0 && track.scrollLeft <= 0) || (delta > 0 && track.scrollLeft >= max - 1)) { targetX = null; return; }
+            e.preventDefault();
+            targetX = Math.max(0, Math.min((targetX == null ? track.scrollLeft : targetX) + delta, max));
+            if (!wheelRaf) wheelRaf = requestAnimationFrame(wheelStep);
+        }, { passive: false });
+
+        // --- Grab & flick to scroll (mouse), with momentum; touch uses native ---
+        // Listeners live on window (no pointer capture) so a plain click still
+        // lands on the card and opens the modal; a real drag engages only after
+        // the pointer moves past a small threshold.
+        let down = false, startX = 0, startScroll = 0, lastX = 0, lastT = 0, vel = 0, moved = false, momRaf = null;
+        track.addEventListener('pointerdown', (e) => {
+            if (e.pointerType !== 'mouse' || e.button !== 0) return;
+            down = true; moved = false;
+            startX = lastX = e.clientX; startScroll = track.scrollLeft;
+            lastT = performance.now(); vel = 0;
+            if (momRaf) { cancelAnimationFrame(momRaf); momRaf = null; }
+            if (wheelRaf) { cancelAnimationFrame(wheelRaf); wheelRaf = null; targetX = null; }
+        });
+        window.addEventListener('pointermove', (e) => {
+            if (!down) return;
+            const dx = e.clientX - startX;
+            if (!moved && Math.abs(dx) > 4) { moved = true; track.classList.add('is-dragging'); }
+            if (moved) track.scrollLeft = startScroll - dx;
+            const now = performance.now(), dt = now - lastT;
+            if (dt > 0) { vel = (e.clientX - lastX) / dt; lastX = e.clientX; lastT = now; }
+        });
+        window.addEventListener('pointerup', () => {
+            if (!down) return;
+            down = false;
+            track.classList.remove('is-dragging');
+            let v = vel * 16;                        // ~px per frame
+            const momentum = () => {
+                if (Math.abs(v) < 0.4) { momRaf = null; return; }
+                track.scrollLeft -= v;
+                v *= 0.93;                           // friction
+                momRaf = requestAnimationFrame(momentum);
+            };
+            if (Math.abs(v) > 1) momRaf = requestAnimationFrame(momentum);
+        });
+        // Swallow the card's click only if the pointer was actually dragged
+        track.addEventListener('click', (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
     }
 
     /* --- Render Catalog (sidebar + grid, ecommerce layout) --- */

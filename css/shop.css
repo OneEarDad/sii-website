@@ -103,6 +103,18 @@ body:has(#shop-container) .page-header p {
     flex: 0 0 82%;                      /* phones: one card + peek */
 }
 
+/* Grab-to-scroll affordance + kill card hover animation mid-drag (no jitter) */
+@media (hover: hover) {
+    .shop-featured__grid { cursor: grab; }
+}
+.shop-featured__grid { user-select: none; }
+.shop-featured__grid img { -webkit-user-drag: none; user-drag: none; }
+.shop-featured__grid.is-dragging { cursor: grabbing; }
+.shop-featured__grid.is-dragging .shop-featured__card {
+    transition: none;
+    transform: none !important;
+}
+
 /* Phones: bleed the track to the screen edges so cards scroll fully off-screen */
 @media (max-width: 599px) {
     .shop-featured__grid {
