@@ -15,8 +15,8 @@
     let specialties = [];
     let activeFilters = { category: '', specialty: '', search: '', channel: 'all' };
 
-    // Curated featured product IDs
-    const featuredIds = ['BSDP-04F', 'BSDP-03F', 'BSDP-03-02F', 'SSP-132F', 'SSP-021F', 'SS62-6401F'];
+    // Curated featured product IDs — packs & kits only
+    const featuredIds = ['BSDP-04F', 'BSDP-03F', 'BSDP-03-02F', 'SSP-132F', 'SSP-021F'];
 
     /* --- Global image error handler (avoids broken inline onerror) --- */
     window._shopImgError = function (img) {
@@ -78,7 +78,9 @@
                         </div>
                     `).join('')}
                 </div>
-                <div class="shop-featured__dots" id="featuredDots" aria-hidden="true"></div>
+                <div class="shop-featured__scrollbar" id="featuredScrollbar">
+                    <div class="shop-featured__thumb" id="featuredThumb"></div>
+                </div>
             </div>
         `;
 
@@ -103,38 +105,54 @@
         setupFeaturedCarousel(featuredSection);
     }
 
-    /* --- Featured carousel dots (mobile) ---
-       The track is a native scroll-snap carousel via CSS; here we just add
-       pagination dots that reflect and drive the scroll position. Purely
-       progressive — if anything is missing the carousel still swipes. */
+    /* --- Featured carousel scrollbar ---
+       A slim draggable scroll indicator under the row that reflects and drives
+       the free-scroll position. Progressive — if anything's missing the row
+       still scrolls on its own. */
     function setupFeaturedCarousel(section) {
         const track = section.querySelector('#featuredGrid');
-        const dotsWrap = section.querySelector('#featuredDots');
-        if (!track || !dotsWrap) return;
+        const bar = section.querySelector('#featuredScrollbar');
+        const thumb = section.querySelector('#featuredThumb');
+        if (!track || !bar || !thumb) return;
+        if (track.children.length < 2) { bar.style.display = 'none'; return; }
 
-        const cards = Array.from(track.children);
-        if (cards.length < 2) return;
-
-        dotsWrap.innerHTML = cards.map((_, i) =>
-            `<button class="shop-featured__dot${i === 0 ? ' is-active' : ''}" data-i="${i}" type="button" aria-label="Go to pack ${i + 1}"></button>`
-        ).join('');
-        const dots = Array.from(dotsWrap.children);
-
-        const step = () => (cards[1].offsetLeft - cards[0].offsetLeft) || 1;
+        function update() {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            if (maxScroll <= 1) { bar.style.display = 'none'; return; }
+            bar.style.display = '';
+            const thumbPct = Math.max((track.clientWidth / track.scrollWidth) * 100, 14);
+            thumb.style.width = thumbPct + '%';
+            thumb.style.left = ((track.scrollLeft / maxScroll) * (100 - thumbPct)) + '%';
+        }
 
         let ticking = false;
-        const update = () => {
-            const idx = Math.min(Math.round(track.scrollLeft / step()), dots.length - 1);
-            dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-            ticking = false;
-        };
         track.addEventListener('scroll', () => {
-            if (!ticking) { ticking = true; requestAnimationFrame(update); }
+            if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
         }, { passive: true });
+        window.addEventListener('resize', () => requestAnimationFrame(update));
+        update();
 
-        dots.forEach(d => d.addEventListener('click', () => {
-            track.scrollTo({ left: step() * Number(d.dataset.i), behavior: 'smooth' });
-        }));
+        // Drag the thumb (or click the track) to scroll
+        let dragging = false, grabDx = 0;
+        const setScrollFromX = (clientX, useGrab) => {
+            const rect = bar.getBoundingClientRect();
+            const thumbW = thumb.offsetWidth;
+            const offset = useGrab ? grabDx : thumbW / 2;
+            const travel = rect.width - thumbW;
+            const p = travel > 0 ? Math.min(Math.max((clientX - rect.left - offset) / travel, 0), 1) : 0;
+            track.scrollLeft = p * (track.scrollWidth - track.clientWidth);
+        };
+        thumb.addEventListener('pointerdown', (e) => {
+            dragging = true;
+            grabDx = e.clientX - thumb.getBoundingClientRect().left;
+            try { thumb.setPointerCapture(e.pointerId); } catch (_) {}
+            e.preventDefault();
+        });
+        thumb.addEventListener('pointermove', (e) => { if (dragging) setScrollFromX(e.clientX, true); });
+        const endDrag = (e) => { dragging = false; try { thumb.releasePointerCapture(e.pointerId); } catch (_) {} };
+        thumb.addEventListener('pointerup', endDrag);
+        thumb.addEventListener('pointercancel', endDrag);
+        bar.addEventListener('pointerdown', (e) => { if (e.target === bar) setScrollFromX(e.clientX, false); });
     }
 
     /* --- Render Catalog (sidebar + grid, ecommerce layout) --- */

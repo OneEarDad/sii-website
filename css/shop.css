@@ -121,27 +121,31 @@ body:has(#shop-container) .page-header p {
     .shop-featured__card { flex-basis: calc((100% - 2 * var(--space-lg)) / 3 - 16px); }
 }
 
-/* Pagination dots */
-.shop-featured__dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: var(--space-md);
-}
-.shop-featured__dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: var(--light-silver, #c6c3c2);
+/* Slim scroll indicator (replaces dots) — draggable, reflects scroll position */
+.shop-featured__scrollbar {
+    position: relative;
+    height: 6px;
+    max-width: 340px;
+    margin: var(--space-md) auto 0;
+    background: rgba(48, 45, 45, 0.08);
+    border-radius: 999px;
     cursor: pointer;
-    transition: background 0.25s ease, transform 0.25s ease;
+    touch-action: none;
 }
-.shop-featured__dot.is-active {
+.shop-featured__thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%;
+    border-radius: 999px;
     background: var(--teal);
-    transform: scale(1.35);
+    cursor: grab;
+    touch-action: none;
+    transition: background 0.2s ease;
 }
+.shop-featured__thumb:active { cursor: grabbing; }
+.shop-featured__scrollbar:hover .shop-featured__thumb { background: var(--deep-teal); }
 
 .shop-featured__card {
     background: var(--white);
