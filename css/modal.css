@@ -198,35 +198,41 @@
     margin-bottom: var(--space-lg);
 }
 
+/* Spec list — clean label / value rows with hairline dividers, no boxes */
 .shop__modal-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-sm);
+    display: flex;
+    flex-direction: column;
     margin-bottom: var(--space-lg);
+    border-top: 1px solid rgba(48, 45, 45, 0.1);
 }
 
 .shop__modal-detail {
-    padding: var(--space-md);
-    background: var(--off-white);
-    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 116px 1fr;
+    gap: var(--space-md);
+    align-items: baseline;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(48, 45, 45, 0.1);
 }
 
 .shop__modal-detail strong {
-    display: block;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     color: var(--teal);
-    margin-bottom: 4px;
+    line-height: 1.5;
 }
 
 .shop__modal-detail span {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: var(--text-primary, var(--charcoal));
+    line-height: 1.5;
 }
 
 .shop__modal-detail--full {
-    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    gap: 6px;
 }
 
 .shop__modal-detail ul {
@@ -239,6 +245,7 @@
     font-size: 0.9rem;
     color: var(--text-primary, var(--charcoal));
     margin-bottom: 2px;
+    line-height: 1.5;
 }
 
 /* --- Mobile responsive --- */
@@ -262,8 +269,9 @@
         min-height: 200px;
     }
 
-    .shop__modal-details {
+    .shop__modal-detail {
         grid-template-columns: 1fr;
+        gap: 2px;
     }
 }
 
