@@ -57,13 +57,7 @@
                 img.style.transform =
                     'translate3d(' + moveX + 'px,' + (scrollOffset + moveY) + 'px,0) scale(' + scale + ')';
             }
-
-            var overlay = hero.querySelector('.hero-img__overlay');
-            if (overlay) {
-                var gradX = 50 + dx * 8;
-                var gradY = 50 + dy * 8;
-                overlay.style.backgroundPosition = gradX + '% ' + gradY + '%';
-            }
+            /* Overlay is a fixed editorial scrim now — only the photo parallaxes. */
         });
     }
 

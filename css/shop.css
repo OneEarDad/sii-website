@@ -24,17 +24,18 @@ body:has(#shop-container) .hero-img__photo {
 }
 
 body:has(#shop-container) .hero-img__overlay {
+    /* Editorial scrim, left-weighted for the centered-left shop title —
+       same crisp neutral palette as the site-wide hero treatment. */
     background:
-        /* Horizontal: dark at left where text sits, fades clear on the right */
         linear-gradient(to right,
-            rgba(20, 18, 17, 0.85) 0%,
-            rgba(20, 18, 17, 0.5) 45%,
-            rgba(20, 18, 17, 0.15) 80%,
-            rgba(20, 18, 17, 0.05) 100%),
-        /* Vertical: subtle floor of dark so wave divider blends cleanly */
-        linear-gradient(to bottom,
-            rgba(20, 18, 17, 0.0) 60%,
-            rgba(20, 18, 17, 0.55) 100%);
+            rgba(14, 16, 18, 0.85) 0%,
+            rgba(14, 16, 18, 0.45) 42%,
+            rgba(14, 16, 18, 0.08) 76%,
+            rgba(14, 16, 18, 0) 100%),
+        linear-gradient(to top,
+            rgba(14, 16, 18, 0.55) 0%,
+            rgba(14, 16, 18, 0.12) 45%,
+            rgba(14, 16, 18, 0.05) 100%);
 }
 
 body:has(#shop-container) .page-header .container {
