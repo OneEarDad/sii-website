@@ -85,76 +85,64 @@ body:has(#shop-container) .page-header p {
     margin-bottom: var(--space-xl);
 }
 
+/* --- Featured packs: horizontal side-scroll carousel (all sizes) ---
+   A single scrolling row. ~1 card + peek on phones, ~2 on tablet, and ~3 with a
+   peek of the next on desktop. Snaps card-by-card; the dots reflect position. */
 .shop-featured__grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
     gap: var(--space-lg);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 6px 0 1.25rem;             /* room for the card shadows */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;              /* Firefox */
+}
+.shop-featured__grid::-webkit-scrollbar { display: none; }  /* WebKit */
+
+.shop-featured__card {
+    flex: 0 0 82%;                      /* phones: one card + peek */
+    scroll-snap-align: start;
+}
+
+/* Phones: bleed the track to the screen edges so cards scroll fully off-screen */
+@media (max-width: 599px) {
+    .shop-featured__grid {
+        gap: var(--space-md);
+        margin-inline: calc(-1 * var(--space-md));
+        padding-inline: var(--space-md);
+        scroll-padding-left: var(--space-md);
+    }
 }
 
 @media (min-width: 600px) {
-    .shop-featured__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .shop-featured__card { flex-basis: 47%; }        /* ~2 + peek */
 }
 
 @media (min-width: 1000px) {
-    .shop-featured__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    /* ~3 across with a small peek of the 4th as a scroll cue */
+    .shop-featured__card { flex-basis: calc((100% - 2 * var(--space-lg)) / 3 - 16px); }
 }
 
-/* --- Featured carousel (mobile) ---
-   On phones the 6 pack cards would stack into a tall column, so instead we
-   turn the grid into a horizontal, snap-scrolling carousel. Cards sit at 82%
-   width so the next one peeks in — a native "there's more, swipe" signal —
-   and the track bleeds to both screen edges (negative margin cancels the
-   container padding) so cards can scroll fully off-screen. */
-@media (max-width: 599px) {
-    .shop-featured__grid {
-        display: flex;
-        grid-template-columns: none;
-        gap: var(--space-md);
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-padding-left: var(--space-md);
-        margin-inline: calc(-1 * var(--space-md));
-        padding-inline: var(--space-md);
-        padding-bottom: var(--space-xs);
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;          /* Firefox */
-    }
-    .shop-featured__grid::-webkit-scrollbar { display: none; }  /* WebKit */
-
-    .shop-featured__card {
-        flex: 0 0 82%;
-        scroll-snap-align: start;
-    }
+/* Pagination dots */
+.shop-featured__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--space-md);
 }
-
-/* Pagination dots — only meaningful for the mobile carousel */
-.shop-featured__dots { display: none; }
-
-@media (max-width: 599px) {
-    .shop-featured__dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: var(--space-md);
-    }
-    .shop-featured__dot {
-        width: 8px;
-        height: 8px;
-        padding: 0;
-        border: none;
-        border-radius: 50%;
-        background: var(--light-silver, #c6c3c2);
-        cursor: pointer;
-        transition: background 0.25s ease, transform 0.25s ease;
-    }
-    .shop-featured__dot.is-active {
-        background: var(--teal);
-        transform: scale(1.35);
-    }
+.shop-featured__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--light-silver, #c6c3c2);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+.shop-featured__dot.is-active {
+    background: var(--teal);
+    transform: scale(1.35);
 }
 
 .shop-featured__card {
