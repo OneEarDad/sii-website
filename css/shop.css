@@ -60,23 +60,13 @@ body:has(#shop-container) .page-header p {
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 
-/* --- Featured Packs Section --- */
+/* --- Featured Packs Section ---
+   White, so it reads distinct from the off-white catalog below it. */
 .shop-featured {
-    background: var(--off-white, #f5f3f1);
+    background: var(--white);
     padding: var(--space-2xl) 0;
     position: relative;
     overflow: hidden;
-}
-
-.shop-featured::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--teal), transparent);
-    opacity: 0.4;
 }
 
 .shop-featured__label {
@@ -173,6 +163,8 @@ body:has(#shop-container) .page-header p {
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
+    /* Soft shadow so the white cards lift off the white section background */
+    box-shadow: 0 4px 16px rgba(48, 45, 45, 0.06);
     transition: all 0.4s cubic-bezier(.62, .16, .13, 1.01);
     position: relative;
 }
@@ -800,10 +792,10 @@ body:has(#shop-container) .page-header p {
 /* Modal styles moved to css/modal.css (shared with home page) */
 
 /* --- Shop Section Divider --- */
+/* Divider line removed — the white featured / off-white catalog colour change
+   separates the two sections on its own. */
 .shop-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), transparent);
+    display: none;
 }
 
 /* --- Catalog Section --- */
