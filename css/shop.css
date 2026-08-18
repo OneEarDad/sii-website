@@ -92,7 +92,7 @@ body:has(#shop-container) .page-header p {
     display: flex;
     gap: var(--space-lg);
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    /* Free-scrolling (no snap) so it glides like a scroll wheel */
     padding: 6px 0 1.25rem;             /* room for the card shadows */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;              /* Firefox */
@@ -101,7 +101,6 @@ body:has(#shop-container) .page-header p {
 
 .shop-featured__card {
     flex: 0 0 82%;                      /* phones: one card + peek */
-    scroll-snap-align: start;
 }
 
 /* Phones: bleed the track to the screen edges so cards scroll fully off-screen */
@@ -110,7 +109,6 @@ body:has(#shop-container) .page-header p {
         gap: var(--space-md);
         margin-inline: calc(-1 * var(--space-md));
         padding-inline: var(--space-md);
-        scroll-padding-left: var(--space-md);
     }
 }
 
