@@ -326,6 +326,13 @@ p {
 .section-waves--teal { background: var(--teal); }
 .section-waves--charcoal { background: var(--charcoal); }
 
+/* Where a full-bleed hero photo meets the next section, use a barely-there
+   fade (~16px) instead of the standard blend, so the photo edge stays crisp. */
+.hero-img + .section-waves {
+    height: 16px;
+    margin-top: -16px;
+}
+
 /* Legacy single-curve support */
 .section-curve {
     position: relative;
