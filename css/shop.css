@@ -683,8 +683,10 @@ body:has(#shop-container) .page-header p {
 .shop__card-img img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: var(--space-sm);           /* tighter so the instrument reads bigger */
+    /* Fill the tile edge-to-edge so every product reads at the same size and
+       framing (a tighter, uniform crop) instead of letterboxing each photo. */
+    object-fit: cover;
+    object-position: center;
     transition: transform 0.5s cubic-bezier(.62, .16, .13, 1.01);
 }
 
@@ -876,10 +878,6 @@ body:has(#shop-container) .page-header p {
 
     .shop__card-sku {
         font-size: 0.68rem;
-    }
-
-    .shop__card-img img {
-        padding: var(--space-sm);
     }
 
     /* Badges scale down so they don't crowd the smaller photo area */
