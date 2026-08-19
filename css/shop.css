@@ -634,6 +634,7 @@ body:has(#shop-container) .page-header p {
    like a product grid, not a single endless column. Columns scale up with
    width; the desktop sidebar eats ~300px, so 3-up kicks in once the main
    column has room. */
+/* Always two per row — large, photo-forward product tiles */
 .shop__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -641,14 +642,7 @@ body:has(#shop-container) .page-header p {
 }
 
 @media (min-width: 768px) {
-    .shop__grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-lg);
-    }
-}
-
-@media (min-width: 1500px) {
-    .shop__grid { grid-template-columns: repeat(4, 1fr); }
+    .shop__grid { gap: var(--space-lg); }
 }
 
 /* ============================================
@@ -690,7 +684,7 @@ body:has(#shop-container) .page-header p {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: var(--space-md);
+    padding: var(--space-sm);           /* tighter so the instrument reads bigger */
     transition: transform 0.5s cubic-bezier(.62, .16, .13, 1.01);
 }
 
@@ -741,7 +735,7 @@ body:has(#shop-container) .page-header p {
 }
 
 .shop__card-body {
-    padding: var(--space-md);
+    padding: var(--space-sm) var(--space-md) var(--space-md);
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
@@ -749,31 +743,31 @@ body:has(#shop-container) .page-header p {
 
 .shop__card-category {
     display: inline-block;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--teal);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .shop__card-name {
-    font-size: 0.98rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     line-height: 1.3;
     color: var(--charcoal);
     flex: 1 1 auto;
 }
 
 .shop__card-size {
-    font-size: 0.82rem;
+    font-size: 0.76rem;
     color: var(--steel-gray);
     margin-bottom: 2px;
 }
 
 .shop__card-sku {
-    font-size: 0.76rem;
+    font-size: 0.7rem;
     color: var(--cool-gray);
     margin-bottom: 0;
     letter-spacing: 0.02em;
