@@ -109,7 +109,14 @@
   }
   function clearPoint(){ marker.classList.remove('on'); callout.classList.remove('show'); }
 
-  function pauseAt(i){ state='paused'; vid.pause(); pointAt(i); holdTimer=setTimeout(resume, HOLD); }
+  function pauseAt(i){
+    state='paused'; vid.pause();
+    // Seek to the EXACT frame so the nipper is always in the same position the
+    // dot was placed for (it's rotating, so a play-through pause drifts).
+    const onSeeked=()=>{ vid.removeEventListener('seeked',onSeeked); pointAt(i); holdTimer=setTimeout(resume, HOLD); };
+    vid.addEventListener('seeked', onSeeked);
+    vid.currentTime = FEATURES[i].t;
+  }
   function resume(){ clearPoint(); idx++; vid.play().catch(()=>{}); state='playing'; }
 
   function loop(){
