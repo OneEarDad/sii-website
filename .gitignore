@@ -14,3 +14,6 @@ desktop.ini
 # Logs
 npm-debug.log*
 *.log
+
+# Local backup of the original full hero video
+assets/video/*-full.*
