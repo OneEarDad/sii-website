@@ -158,10 +158,11 @@
         const viewCenter = scrollY + window.innerHeight / 2;
         for (const s of sectionMap) {
             if (viewCenter >= s.top && viewCenter <= s.bottom) {
-                return s.dark ? 1.0 : 0.25;
+                // Boosted on light sections so the dots stay visible on white too
+                return s.dark ? 1.0 : 0.6;
             }
         }
-        return 0.15;
+        return 0.4;
     }
 
     /* --- Draw Connections --- */
