@@ -22,32 +22,30 @@
          border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.5);margin-top:clamp(1.4rem,4vw,2.4rem)}
   .stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
-  /* Marker that points at the area (no zoom — video stays full quality) */
-  .marker{position:absolute;width:0;height:0;z-index:4;opacity:0;transition:opacity .4s ease;pointer-events:none}
-  .marker.on{opacity:1}
-  .marker__dot{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;
-        background:var(--teal-bright);border:2px solid #fff;box-shadow:0 0 14px rgba(143,195,195,.75)}
-  .marker__ring{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%}
-  .marker__ring::after,.marker__ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--teal-bright);animation:ping 2.1s ease-out infinite}
-  .marker__ring::before{animation-delay:1.05s}
-  @keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(4.2);opacity:0}}
+  /* Leader line pointing to the feature */
+  .lines{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible;
+         opacity:0;transition:opacity .4s ease;filter:drop-shadow(0 0 4px rgba(143,195,195,.45))}
+  .lines.on{opacity:1}
+  #lead{stroke:var(--teal-bright);stroke-width:1.4;stroke-linecap:round}
+  #endRing{fill:none;stroke:var(--teal-bright);stroke-width:1.4}
+  #endDot{fill:var(--teal-bright)}
 
-  /* Caption overlay */
-  .callout{position:absolute;left:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:5;
-        width:min(360px,72%);background:rgba(10,15,15,.8);border:1px solid var(--line);border-radius:14px;
-        padding:1.1rem 1.25rem;backdrop-filter:blur(10px);
-        opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s cubic-bezier(.62,.16,.13,1.01);pointer-events:none}
-  .callout.show{opacity:1;transform:translateY(0)}
-  .callout__eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:.45rem;font-weight:700}
-  .callout h3{font-size:1.18rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.4rem;line-height:1.2}
-  .callout p{font-size:.9rem;line-height:1.55;color:#b9cccc}
+  /* Label at the end of the line */
+  .label{position:absolute;z-index:5;max-width:min(280px,34%);opacity:0;transition:opacity .5s ease;pointer-events:none;
+         text-shadow:0 1px 10px rgba(0,0,0,.85)}
+  .label.on{opacity:1}
+  .label.right{transform:translate(16px,-50%);text-align:left}
+  .label.left{transform:translate(-16px,-50%);text-align:right}
+  .label__eyebrow{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:.35rem}
+  .label__title{font-size:1.08rem;font-weight:700;color:#eef4f4;line-height:1.2;margin-bottom:.35rem;letter-spacing:-.01em}
+  .label__desc{font-size:.82rem;color:#aebfbf;line-height:1.5}
 
-  .dots{position:absolute;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:5;display:flex;gap:9px;align-items:center}
+  .dots{position:absolute;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:6;display:flex;gap:9px;align-items:center}
   .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28);transition:all .3s ease}
   .dot.active{background:var(--teal-bright);transform:scale(1.35);box-shadow:0 0 12px rgba(143,195,195,.6)}
   .dot.done{background:var(--teal)}
 
-  .starthint{position:absolute;inset:0;z-index:6;display:none;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;
+  .starthint{position:absolute;inset:0;z-index:7;display:none;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;
         background:rgba(6,10,10,.55);cursor:pointer;color:#eaf2f2;font-weight:600}
   .starthint span{font-size:2rem}
 
@@ -59,60 +57,83 @@
 <div class="wrap">
   <div class="eyebrow">Interactive · Prototype</div>
   <h1>Auto tour — the <em>Nipper</em></h1>
-  <p class="lead">No clicking, no zooming (the video stays full quality). It plays the nipper rotating into its box and <b>pauses on its own at each feature</b>, points to it, and captions it — then resumes to the next and loops.</p>
+  <p class="lead">No clicking, no zooming (full video quality). It plays the nipper rotating into its box and <b>pauses on its own at each feature</b>, draws a line to it, and captions it — then resumes to the next and loops.</p>
 
   <div class="stage" id="stage">
     <video id="vid" src="assets/video/hero-bg.mp4" poster="assets/video/hero-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
-    <div class="marker" id="marker"><span class="marker__ring"></span><span class="marker__dot"></span></div>
-    <div class="callout" id="callout">
-      <div class="callout__eyebrow" id="cEyebrow">Feature</div>
-      <h3 id="cTitle"></h3>
-      <p id="cDesc"></p>
+    <svg class="lines" id="lines">
+      <line id="lead" x1="0" y1="0" x2="0" y2="0"></line>
+      <circle id="endRing" cx="0" cy="0" r="5"></circle>
+      <circle id="endDot" cx="0" cy="0" r="1.6"></circle>
+    </svg>
+    <div class="label" id="label">
+      <div class="label__eyebrow" id="lE">Feature</div>
+      <div class="label__title" id="lT"></div>
+      <div class="label__desc" id="lD"></div>
     </div>
     <div class="dots" id="dots"></div>
     <div class="starthint" id="starthint"><span>▶</span>Tap to start the tour</div>
   </div>
 
-  <p class="note">Same clip as the homepage hero — the pauses, pointers and captions layer on top, all automatic. No frame is scaled up, so nothing blurs.</p>
+  <p class="note">Same clip as the homepage hero — the pauses, leader lines and captions layer on top, all automatic.</p>
   <div class="foot">SII · auto instrument video tour concept</div>
 </div>
 
 <script>
-  // In video-time order so the clip plays through naturally and stops on each part.
+  // fx/fy = the point on the instrument; lx/ly = where the label sits (in the black space).
   const FEATURES = [
-    { t:5,  x:51, y:24, label:'Internal Spring',
+    { t:5,  fx:51, fy:24, lx:28, ly:26, label:'Internal Spring',
       desc:'A double-leaf internal spring re-opens the handles automatically after every cut.' },
-    { t:7,  x:54, y:10, label:'Sharpness of Nipper Blades',
+    { t:7,  fx:54, fy:10, lx:61, ly:17, label:'Sharpness of Nipper Blades',
       desc:'Precision-ground stainless-steel blades meet in a clean, exact line — factory-sharp, never dulled by reprocessing.' },
-    { t:15, x:57, y:82, label:'Cushioned Silicone Handle',
+    { t:15, fx:57, fy:82, lx:62, ly:73, label:'Cushioned Silicone Handle',
       desc:'Soft silicone-cushioned handles give a secure, comfortable, non-slip grip.' },
-    { t:19, x:54, y:60, label:'Gamma Sterilization',
+    { t:19, fx:54, fy:58, lx:26, ly:56, label:'Gamma Sterilization',
       desc:'Arrives factory-sealed and gamma-sterilized — open and use, zero reprocessing.' },
   ];
-  const HOLD = 3200;
+  const HOLD = 3400;
 
   const stage=document.getElementById('stage'), vid=document.getElementById('vid'),
-        marker=document.getElementById('marker'), callout=document.getElementById('callout'),
-        cEyebrow=document.getElementById('cEyebrow'), cTitle=document.getElementById('cTitle'),
-        cDesc=document.getElementById('cDesc'), dotsWrap=document.getElementById('dots'),
-        starthint=document.getElementById('starthint');
+        lines=document.getElementById('lines'), lead=document.getElementById('lead'),
+        endRing=document.getElementById('endRing'), endDot=document.getElementById('endDot'),
+        label=document.getElementById('label'), lE=document.getElementById('lE'),
+        lT=document.getElementById('lT'), lD=document.getElementById('lD'),
+        dotsWrap=document.getElementById('dots'), starthint=document.getElementById('starthint');
 
   const dots = FEATURES.map(()=>{ const d=document.createElement('span'); d.className='dot'; dotsWrap.appendChild(d); return d; });
   let idx=0, state='playing', lastTime=0, holdTimer=null;
 
   function pointAt(i){
-    const f=FEATURES[i];
-    marker.style.left=f.x+'%'; marker.style.top=f.y+'%'; marker.classList.add('on');
-    cEyebrow.textContent='Feature 0'+(i+1); cTitle.textContent=f.label; cDesc.textContent=f.desc;
-    callout.classList.add('show');
+    const f=FEATURES[i], w=stage.clientWidth, h=stage.clientHeight;
+    const fxp=f.fx/100*w, fyp=f.fy/100*h, lxp=f.lx/100*w, lyp=f.ly/100*h;
+    lead.setAttribute('x1',fxp); lead.setAttribute('y1',fyp);
+    lead.setAttribute('x2',lxp); lead.setAttribute('y2',lyp);
+    endRing.setAttribute('cx',fxp); endRing.setAttribute('cy',fyp);
+    endDot.setAttribute('cx',fxp); endDot.setAttribute('cy',fyp);
+    lines.classList.add('on');
+
+    // draw-on animation for the line
+    const len=Math.hypot(lxp-fxp,lyp-fyp);
+    lead.style.transition='none';
+    lead.setAttribute('stroke-dasharray',len);
+    lead.setAttribute('stroke-dashoffset',len);
+    void lead.getBoundingClientRect();
+    lead.style.transition='stroke-dashoffset .6s cubic-bezier(.62,.16,.13,1.01)';
+    lead.setAttribute('stroke-dashoffset',0);
+
+    lE.textContent='Feature 0'+(i+1); lT.textContent=f.label; lD.textContent=f.desc;
+    const right=f.lx>=f.fx;
+    label.classList.toggle('right',right); label.classList.toggle('left',!right);
+    label.style.top=f.ly+'%';
+    if(right){ label.style.left=f.lx+'%'; label.style.right='auto'; }
+    else { label.style.right=(100-f.lx)+'%'; label.style.left='auto'; }
+    label.classList.add('on');
     dots.forEach((d,j)=>{ d.classList.toggle('active',j===i); d.classList.toggle('done',j<i); });
   }
-  function clearPoint(){ marker.classList.remove('on'); callout.classList.remove('show'); }
+  function clearPoint(){ lines.classList.remove('on'); label.classList.remove('on'); }
 
   function pauseAt(i){
     state='paused'; vid.pause();
-    // Seek to the EXACT frame so the nipper is always in the same position the
-    // dot was placed for (it's rotating, so a play-through pause drifts).
     const onSeeked=()=>{ vid.removeEventListener('seeked',onSeeked); pointAt(i); holdTimer=setTimeout(resume, HOLD); };
     vid.addEventListener('seeked', onSeeked);
     vid.currentTime = FEATURES[i].t;
@@ -130,6 +151,7 @@
 
   vid.play().then(begin).catch(()=>{ starthint.style.display='flex'; });
   starthint.addEventListener('click', ()=>{ vid.play().then(begin).catch(()=>{}); });
+  window.addEventListener('resize', ()=>{ if(state==='paused' && idx<FEATURES.length) pointAt(idx); });
 </script>
 </body>
 </html>
