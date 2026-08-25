@@ -31,8 +31,8 @@
   #endDot{fill:var(--teal-bright)}
 
   /* Label at the end of the line */
-  .label{position:absolute;z-index:5;max-width:min(280px,34%);opacity:0;transition:opacity .5s ease;pointer-events:none;
-         text-shadow:0 1px 10px rgba(0,0,0,.85)}
+  .label{position:absolute;z-index:5;max-width:min(250px,32%);opacity:0;transition:opacity .5s ease;pointer-events:none;
+         text-shadow:0 1px 12px rgba(0,0,0,.92)}
   .label.on{opacity:1}
   .label.right{transform:translate(16px,-50%);text-align:left}
   .label.left{transform:translate(-16px,-50%);text-align:right}
@@ -82,14 +82,14 @@
 <script>
   // fx/fy = the point on the instrument; lx/ly = where the label sits (in the black space).
   const FEATURES = [
-    { t:5,  fx:51, fy:24, lx:28, ly:26, label:'Internal Spring',
-      desc:'A double-leaf internal spring re-opens the handles automatically after every cut.' },
-    { t:7,  fx:52, fy:12, lx:61, ly:17, label:'Sharpness of Nipper Blades',
-      desc:'Precision-ground stainless-steel blades meet in a clean, exact line — factory-sharp, never dulled by reprocessing.' },
+    { t:7,  fx:53, fy:10, lx:61, ly:17, label:'Super Sharp Blade',
+      desc:'Ensures a clean, low-effort cut — and sharp instruments mean faster, more efficient procedures.' },
+    { t:7,  fx:48, fy:51, lx:26, ly:53, label:'Internal Spring',
+      desc:'Ensures consistent performance and tension, for predictable, reliable functionality.' },
     { t:15, fx:57, fy:82, lx:62, ly:73, label:'Cushioned Silicone Handle',
-      desc:'Soft silicone-cushioned handles give a secure, comfortable, non-slip grip.' },
-    { t:19, fx:54, fy:58, lx:26, ly:56, label:'Gamma Sterilization',
-      desc:'Arrives factory-sealed and gamma-sterilized — open and use, zero reprocessing.' },
+      desc:'Improves comfort and reduces weight and hand strain — absorbing the shock wave from each cut.' },
+    { t:19, fx:54, fy:58, lx:29, ly:54, label:'Gamma Sterilization',
+      desc:'Gamma-sterilized and sealed for a 5-year sterile shelf life — ready to open and use.' },
   ];
   const HOLD = 3400;
 
