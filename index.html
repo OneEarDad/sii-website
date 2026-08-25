@@ -48,6 +48,21 @@
                 <div class="hero__dot hero__dot--3"></div>
             </div>
 
+            <!-- Interactive feature tour overlay (populated by js/hero-tour.js) -->
+            <div class="hero-tour" id="heroTour" aria-hidden="true">
+                <svg class="hero-tour__lines" id="htLines">
+                    <line id="htLead" x1="0" y1="0" x2="0" y2="0"></line>
+                    <circle id="htRing" cx="0" cy="0" r="5"></circle>
+                    <circle id="htDot" cx="0" cy="0" r="1.6"></circle>
+                </svg>
+                <div class="hero-tour__label" id="htLabel">
+                    <div class="hero-tour__label-eyebrow" id="htE"></div>
+                    <div class="hero-tour__label-title" id="htT"></div>
+                    <div class="hero-tour__label-desc" id="htD"></div>
+                </div>
+                <div class="hero-tour__dots" id="htDots"></div>
+            </div>
+
             <!-- Label positioned at top of hero -->
             <div class="hero__top-label">Surgical Instruments &amp; Innovations</div>
 
@@ -336,6 +351,7 @@
     <script src="js/particles.js"></script>
     <script src="js/effects.js"></script>
     <script src="js/hero-intro.js"></script>
+    <script src="js/hero-tour.js"></script>
     <script src="js/home-marquee.js"></script>
     <script src="js/home.js"></script>
 </body>

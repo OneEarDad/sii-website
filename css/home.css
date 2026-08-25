@@ -155,6 +155,67 @@ body:not(.intro-done) .hero__scroll-indicator {
     transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
+/* ============================================
+   HERO FEATURE TOUR (interactive annotations)
+   ============================================ */
+.hero-tour {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+.hero-tour__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    filter: drop-shadow(0 0 4px rgba(143, 195, 195, 0.45));
+}
+.hero-tour__lines.on { opacity: 1; }
+#htLead { stroke: var(--teal-bright, #8fc3c3); stroke-width: 1.4; stroke-linecap: round; fill: none; }
+#htRing { fill: none; stroke: var(--teal-bright, #8fc3c3); stroke-width: 1.4; }
+#htDot { fill: var(--teal-bright, #8fc3c3); }
+
+.hero-tour__label {
+    position: absolute;
+    max-width: min(250px, 26vw);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.92);
+}
+.hero-tour__label.on { opacity: 1; }
+.hero-tour__label.right { transform: translate(16px, -50%); text-align: left; }
+.hero-tour__label.left { transform: translate(-16px, -50%); text-align: right; }
+.hero-tour__label-eyebrow {
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--teal, #6aa1a1); font-weight: 700; margin-bottom: 0.35rem;
+}
+.hero-tour__label-title {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem); font-weight: 700; color: #eef4f4;
+    line-height: 1.2; margin-bottom: 0.35rem; letter-spacing: -0.01em;
+}
+.hero-tour__label-desc {
+    font-size: clamp(0.76rem, 1vw, 0.85rem); color: #aebfbf; line-height: 1.5;
+}
+
+.hero-tour__dots {
+    position: absolute;
+    right: clamp(14%, 16vw, 20%);
+    top: 62%;
+    display: flex;
+    gap: 9px;
+}
+.hero-tour__dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.28);
+    transition: all 0.3s ease;
+}
+.hero-tour__dot.active { background: var(--teal-bright, #8fc3c3); transform: scale(1.35); box-shadow: 0 0 12px rgba(143, 195, 195, 0.6); }
+.hero-tour__dot.done { background: var(--teal, #6aa1a1); }
+
 /* Gradient overlays — subtle vignette, seamless blend at bottom */
 .hero::before {
     content: '';
